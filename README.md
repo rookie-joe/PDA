@@ -23,7 +23,7 @@ FORML4
 
 
 
-# Requirements
+## Requirements
 
 
 
@@ -31,7 +31,7 @@ Below we outlier the steps and Please visit our GitHub repository for more detai
 
 
 
-## Prerequisites
+### Prerequisites
 
 To set up your environment to run the code, you need to have Linux. Other platforms can follow Lean 4 documentation for setup.
 
@@ -57,7 +57,7 @@ For non-Linux platforms, refer to the [Lean4 setup documentation](https://lean-l
 
 
 
-## Installation
+### Installation
 
 To work with **Automatic Lean4 Compilation**:
 
@@ -98,7 +98,7 @@ echo '{"path": "test/test.lean", "allTactics": true}' | lake exe repl
 
 
 
-## Usage
+### Usage
 
 After installation, you can benchmark and evaluate the autoformalization as follows:
 
@@ -111,23 +111,21 @@ python3 pass_rate_new.py --input_path {input_path} --output_path {output_path}
 
 
 
-
-
-# Dataset [todo]
+## Dataset [todo]
 
 The `data` directory includes both training and testing data for benchmarking the autoformalization task in Lean 4. It provides sampled cases due to size limitations, giving an overview of the benchmark.
 
 
 
-# Contributing
+
+
+## Contributing
 
 To contribute to this project, please follow the guidelines provided in `CONTRIBUTING.md`. We welcome contributions from the community, including bug fixes, enhancements, or documentation.
 
 
 
-
-
-# License
+## License
 
 This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), a Creative Commons Attribution 4.0 International License.
 
