@@ -159,11 +159,11 @@ We evaluate and compare the performance of an enhanced autoformalization model t
 
 Next, we further evaluated an enhanced verifier by applying it to outputs from the RFT+Verifier model. The evaluation was conducted in relation to a pre-defined experimental setup, comparing process-supervised training (PSV +), which builds upon the previous PSV model, and outcome-supervised training (OSV +), which improves upon OSV. The results can be seen in the table below.
 
-| Dataset | OSV - MP1 | OSV - Acc | OSV - Recall | OSV + - MP1 | OSV + - Acc | OSV + - Recall | PSV - MP1 | PSV - Acc | PSV - Recall | PSV + - MP1 | PSV + - Acc | PSV + - Recall |
-| ------- | --------- | --------- | ------------ | ----------- | ----------- | -------------- | --------- | --------- | ------------ | ----------- | ----------- | -------------- |
-| Basic   | 40.71     | 81.34     | 80.12        | 45.13       | 84.22       | 83.18          | 41.49     | 84.59     | 82.73        | 47.30       | 89.14       | 94.17          |
-| Random  | 36.14     | 81.16     | 81.07        | 38.21       | 83.13       | 84.45          | 37.52     | 84.68     | 83.47        | 44.32       | 84.20       | 93.70          |
-| Real    | 25.75     | 84.45     | 86.21        | 33.41       | 84.45       | 86.21          | 33.42     | 84.34     | 81.08        | 45.10       | 94.18       | 89.31          |
+| Dataset | OSV<br />MP1 | OSV <br />Acc | OSV <br />Recall | OSV + <br />MP1 | OSV + <br />Acc | OSV + <br /> Recall | PSV <br /> MP1 | PSV <br /> Acc | PSV <br />Recall | PSV + <br /> MP1 | PSV +<br />Acc | PSV + <br />Recall |
+| ------- | ------------ | ------------- | ---------------- | --------------- | --------------- | ------------------- | -------------- | -------------- | ---------------- | ---------------- | -------------- | ------------------ |
+| Basic   | 40.71        | 81.34         | 80.12            | 45.13           | 84.22           | 83.18               | 41.49          | 84.59          | 82.73            | 47.30            | 89.14          | 94.17              |
+| Random  | 36.14        | 81.16         | 81.07            | 38.21           | 83.13           | 84.45               | 37.52          | 84.68          | 83.47            | 44.32            | 84.20          | 93.70              |
+| Real    | 25.75        | 84.45         | 86.21            | 33.41           | 84.45           | 86.21               | 33.42          | 84.34          | 81.08            | 45.10            | 94.18          | 89.31              |
 
 
 
