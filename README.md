@@ -15,15 +15,31 @@ FORML4
 │       │   │   └── InfoTree
 │       │   └── Util
 │       └── test
-└── data
-    └── sample
-        ├── test
-        └── train
+├── data
+    ├── basic_test.json
+    ├── random_test.json
+    ├── real_test.jsonl
+    └── train.json
 ```
 
+## Dataset 
+
+The `data.zip` directory includes both training  and testing data (**<span style="font-variant: small-caps;">forml4</span>**) for benchmarking the autoformalization task in Lean 4. This dataset is a key resource for developing and evaluating models that can automate the process of formalizing mathematical statements and proofs.
+
+### Contents of the Dataset
+
+The dataset is organized into the following files, ensuring a comprehensive approach to both training and testing your models:
+
+- `train.json`: The training data file containing 14509 examples to train models. It includes both the formal and informal statements necessary for learning the autoformalization.
+- `basic_test.json`: The basic test set (970) is specifically designed to evaluate a model's capability to formalize fundamental theorems. 
+- `random_test.json`: The random test set (979) contains a diverse and randomly selected set of problems. 
+- `real_test.jsonl`: The real test set represents the out-of-domain test set, featuring 1,000 natural language mathematics questions and answers distilled from the Arithmo test set. 
 
 
-## Requirements
+
+## Code [todo]
+
+###  Requirements
 
 
 
@@ -31,7 +47,7 @@ Below we outlier the steps and Please visit our GitHub repository for more detai
 
 
 
-### Prerequisites
+####  Prerequisites
 
 To set up your environment to run the code, you need to have Linux. Other platforms can follow Lean 4 documentation for setup.
 
@@ -57,7 +73,7 @@ For non-Linux platforms, refer to the [Lean4 setup documentation](https://lean-l
 
 
 
-### Installation
+####  Installation
 
 To work with **Automatic Lean4 Compilation**:
 
@@ -98,7 +114,7 @@ echo '{"path": "test/test.lean", "allTactics": true}' | lake exe repl
 
 
 
-### Usage
+####  Usage
 
 After installation, you can benchmark and evaluate the autoformalization as follows:
 
@@ -111,9 +127,6 @@ python3 pass_rate_new.py --input_path {input_path} --output_path {output_path}
 
 
 
-## Dataset [todo]
-
-The `data` directory includes both training and testing data (**<span style="font-variant: small-caps;">forml4</span>**) for benchmarking the autoformalization task in Lean 4. It provides sampled cases due to size limitations, giving an overview of the benchmark.
 
 
 
