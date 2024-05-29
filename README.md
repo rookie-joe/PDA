@@ -7,7 +7,7 @@ We note that we have already release our novel proposed benchmark, **Form**aliza
 ## Repository Structure
 
 ```
-FORML4
+PDA
 ├── code
 │   ├── Automatic-Lean4-Compilation [ref]
 │   └── Training-Scripts [todo]    
