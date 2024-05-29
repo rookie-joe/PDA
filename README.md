@@ -21,7 +21,7 @@ PDA
 
 ## Dataset 
 
-The `data.zip` directory includes both training  and testing data (**<span style="font-variant: small-caps;">forml4</span>**) for benchmarking the autoformalization task in Lean 4. This dataset is a key resource for developing and evaluating models that can automate the process of formalizing mathematical statements and proofs.
+The `data/data.zip` directory includes both training  and testing data (**<span style="font-variant: small-caps;">forml4</span>**) for benchmarking the autoformalization task in Lean 4. This dataset is a key resource for developing and evaluating models that can automate the process of formalizing mathematical statements and proofs.
 
 ### Contents of the Dataset
 
