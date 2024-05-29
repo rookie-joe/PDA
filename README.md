@@ -9,12 +9,9 @@ We note that we have already release our novel proposed benchmark, **Form**aliza
 ```
 FORML4
 ├── code
-│   └── Automatic-Lean4-Compilation
-│       ├── REPL
-│       │   ├── Lean
-│       │   │   └── InfoTree
-│       │   └── Util
-│       └── test
+│   ├── Automatic-Lean4-Compilation [ref]
+│   └── Training-Scripts [todo]    
+│       
 ├── data
 │   ├── basic_test.json
 │   ├── random_test.json
