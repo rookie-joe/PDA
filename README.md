@@ -40,7 +40,7 @@ The dataset is organized into the following files, ensuring a comprehensive appr
 
 - [x] **Applying Lean 4 Compiler**: Please visit our GitHub repository for more details about how to automate your Lean 4 installation and compilation: [**Automatic Lean 4 Compilation Guide**](https://github.com/rookie-joe/automatic-lean4-compilation)
 
-- [ ] Training autoformalizer and verifier based on (**<span style="font-variant: small-caps;">forml4</span>**) 
+- [ ] Training/Evaluating autoformalizer and verifier based on (**<span style="font-variant: small-caps;">forml4</span>**) 
 
 
 
@@ -52,17 +52,15 @@ The dataset is organized into the following files, ensuring a comprehensive appr
 | **Model**                     | **Random** |        |        | **Basic** |        |        | **Real** |        |        |
 | ----------------------------- | ---------- | ------ | ------ | --------- | ------ | ------ | -------- | ------ | ------ |
 |                               | Greedy     | Pass@1 | Pass@5 | Greedy    | Pass@1 | Pass@5 | Greedy   | Pass@1 | Pass@5 |
-| **Closed-Source LLMs**        |            |        |        |           |        |        |          |        |        |
-| GPT-3.5-Turbo [1]             | 0.41       | 0.32   | 0.73   | 0.29      | 0.00   | 0.66   | 5.10     | 3.80   | 17.00  |
-| GPT-4-Turbo [2]               | 0.49       | 0.41   | 3.42   | 1.47      | 1.14   | 4.38   | 10.20    | 8.70   | 25.10  |
-| **Open-Source LLMs**          |            |        |        |           |        |        |          |        |        |
-| DeepSeek-Math-Base-7B [3]     | 0.17       | 0.21   | 0.95   | 0.34      | 0.22   | 0.81   | 0.00     | 0.00   | 0.00   |
-| DeepSeek-Math-Instruct-7B [3] | 0.58       | 0.22   | 1.71   | 1.16      | 0.47   | 3.04   | 0.30     | 1.60   | 5.30   |
-| LLEMMA-7B [4]                 | 0.00       | 0.00   | 0.77   | 0.17      | 0.10   | 0.45   | 0.00     | 0.00   | 0.00   |
-| LLEMMA-34B [4]                | 0.00       | 0.00   | 0.18   | 0.00      | 0.00   | 0.00   | 0.00     | 0.00   | 0.00   |
-| InternLM-Math-7B [5]          | 0.00       | 0.00   | 0.18   | 0.19      | 0.14   | 0.26   | 1.10     | 1.00   | 3.70   |
-| InternLM-Math-20B [5]         | 0.00       | 0.00   | 0.00   | 0.00      | 0.00   | 0.00   | 0.20     | 0.70   | 2.30   |
-| Mistral-Instruct-v0.2-7B [6]  | 0.28       | 0.21   | 1.86   | 0.45      | 0.77   | 1.82   | 0.30     | 0.50   | 1.90   |
+| GPT-3.5-Turbo           | 0.41       | 0.32   | 0.73   | 0.29      | 0.00   | 0.66   | 5.10     | 3.80   | 17.00  |
+| GPT-4-Turbo             | 0.49       | 0.41   | 3.42   | 1.47      | 1.14   | 4.38   | 10.20    | 8.70   | 25.10  |
+| DeepSeek-Math-Base-7B     | 0.17       | 0.21   | 0.95   | 0.34      | 0.22   | 0.81   | 0.00     | 0.00   | 0.00   |
+| DeepSeek-Math-Instruct-7B | 0.58       | 0.22   | 1.71   | 1.16      | 0.47   | 3.04   | 0.30     | 1.60   | 5.30   |
+| LLEMMA-7B                  | 0.00       | 0.00   | 0.77   | 0.17      | 0.10   | 0.45   | 0.00     | 0.00   | 0.00   |
+| LLEMMA-34B                | 0.00       | 0.00   | 0.18   | 0.00      | 0.00   | 0.00   | 0.00     | 0.00   | 0.00   |
+| InternLM-Math-7B           | 0.00       | 0.00   | 0.18   | 0.19      | 0.14   | 0.26   | 1.10     | 1.00   | 3.70   |
+| InternLM-Math-20B         | 0.00       | 0.00   | 0.00   | 0.00      | 0.00   | 0.00   | 0.20     | 0.70   | 2.30   |
+| Mistral-Instruct-v0.2-7B   | 0.28       | 0.21   | 1.86   | 0.45      | 0.77   | 1.82   | 0.30     | 0.50   | 1.90   |
 
 
 
@@ -98,24 +96,6 @@ Next, we further evaluated an enhanced verifier by applying it to outputs from t
 ## Contributing
 
 To contribute to this project, please follow the guidelines provided in `CONTRIBUTING.md`. We welcome contributions from the community, including bug fixes, enhancements, or documentation.
-
-
-
-
-
-## References
-
-1. OpenAI "GPT-3.5 Turbo", 2023
-
-2. Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et al. "Gpt-4 technical report." _arXiv preprint arXiv:2303.08774_, 2023
-
-3. Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y. K. Li, Y. Wu, and Daya Guo. "Deepseekmath: Pushing the limits of mathematical reasoning in open language models." _CoRR, abs/2402.03300_, 2024 
-
-4. Zhangir Azerbayev, Hailey Schoelkopf, Keiran Paster, Marco Dos Santos, Stephen McAleer, Albert Q. Jiang, Jia Deng, Stella Biderman, and Sean Welleck. "Llemma: An open language model for mathematics." _CoRR, abs/2310.10631_, 2023
-
-5. Huaiyuan Ying, Shuo Zhang, Linyang Li, Zhejian Zhou, Yunfan Shao, Zhaoye Fei, Yichuan Ma, Jiawei Hong, Kuikun Liu, Ziyi Wang, Yudong Wang, Zijian Wu, Shuaibin Li, Fengzhe Zhou, Hongwei Liu, Songyang Zhang, Wenwei Zhang, Hang Yan, Xipeng Qiu, Jiayu Wang, Kai Chen, and Dahua Lin. "Internlm-math: Open math large language models toward verifiable reasoning." _CoRR, abs/2402.06332_, 2024.
-
-6. Albert Q. Jiang, Alexandre Sablayrolles, Arthur Mensch, Chris Bamford, Devendra Singh Chaplot, Diego de Las Casas, Florian Bressand, Gianna Lengyel, Guillaume Lample, Lucile Saulnier, Lélio Renard Lavaud, Marie-Anne Lachaux, Pierre Stock, Teven Le Scao, Thibaut Lavril, Thomas Wang, Timothée Lacroix, and William El Sayed. "Mistral 7b." _CoRR, abs/2310.06825_, 2023.
 
 
 
