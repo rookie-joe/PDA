@@ -103,4 +103,10 @@ To contribute to this project, please follow the guidelines provided in `CONTRIB
 
 This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), a Creative Commons Attribution 4.0 International License.
 
+## Citation
+If you find the methods and resources outlined in this work to be beneficial, please kindly cite our paper:
+- [ ] to be released soon
+
+
+
 Feel free to reach out with questions or for collaboration.
