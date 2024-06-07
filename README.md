@@ -7,9 +7,9 @@ An overview of process-driven autoformalization (PDA):
 
 ![PDA overview](./PDA_main.png)
 
-1. FORML4 benchmark is constructed by prompting GPT-4 to informalize theorems extracted from Mathlib 4; 
-2. An autoformalizer model is trained on FORML4, with output sent to the Lean 4 Compiler for automated feedback; 
-3. The compiled feedback can provide process-level annotations for the autoformalizer which are used to train an effective PSV model; 
+1. **FORML4** benchmark is constructed by prompting GPT-4 to informalize theorems extracted from Mathlib 4; 
+2. An **autoformalizer** model is trained on FORML4, with output sent to the Lean 4 Compiler for automated feedback; 
+3. The compiled feedback can provide **process-level annotations** for the autoformalizer's output which are used to train an effective **PSV model**; 
 4. For further enhancement, the autoformalizer is subsequently fine-tuned by the verifier’s feedback, while the
 verifier can again benefit from the improved autoformalizer’s higher-quality output data.
 
