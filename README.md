@@ -1,8 +1,15 @@
 # Process-Driven Autoformalization in Lean 4
 
-We note that we have already release our novel proposed benchmark, **Form**alization for **L**ean **4** (**<span style="font-variant: small-caps;">forml4</span>**), and **We will release the code and corresponding finetuned autoformalizer and process-enhanced verifier soon**. This repository officially implements for [Process-Driven Autoformalization in Lean 4](https://arxiv.org/abs/2406.01940).
+We note that we have already released our novel proposed benchmark, **Form**alization for **L**ean **4** (**<span style="font-variant: small-caps;">forml4</span>**), and **We will release the code and corresponding finetuned autoformalizer and process-enhanced verifier soon**. This is the official repository for implementing our paper [Process-Driven Autoformalization in Lean 4](https://arxiv.org/abs/2406.01940).
 
-
+## Overview
+![PDA overview](./PDA_main.png)
+An overview of the process-driven autoformalization (PDA) framework, including four major processes:
+1. FORML4 benchmark is constructed by prompting GPT-4 to informalize theorems extracted from Mathlib 4; 
+2. An autoformalizer model is trained on FORML4, with output sent to the Lean 4 Compiler for automated feedback; 
+3. The compiled feedback can provide process-level annotations for the autoformalizer which are used to train an effective PSV model; 
+4. For further enhancement, the autoformalizer is subsequently fine-tuned by the verifier’s feedback, while the
+verifier can again benefit from the improved autoformalizer’s higher-quality output data.
 
 ## Repository Structure
 
