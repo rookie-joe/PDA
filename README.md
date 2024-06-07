@@ -1,6 +1,6 @@
 # Process-Driven Autoformalization in Lean 4
 
-We note that we have already release our novel proposed benchmark, **Form**alization for **L**ean **4** (**<span style="font-variant: small-caps;">forml4</span>**), and **We will release the code and corresponding finetuned autoformalizer and process-enhanced verifier soon**. This repository is the official implementation of Process-Driven Autoformalization in Lean 4.
+We note that we have already release our novel proposed benchmark, **Form**alization for **L**ean **4** (**<span style="font-variant: small-caps;">forml4</span>**), and **We will release the code and corresponding finetuned autoformalizer and process-enhanced verifier soon**. This repository officially implements for [Process-Driven Autoformalization in Lean 4](https://arxiv.org/abs/2406.01940).
 
 
 
