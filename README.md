@@ -113,13 +113,19 @@ To contribute to this project, please follow the guidelines provided in `CONTRIB
 This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), a Creative Commons Attribution 4.0 International License.
 
 ## Citation
-If you find the methods and resources outlined in this work to be beneficial, please kindly cite our paper:
+If you find the methods and resources provided in this work beneficial, we kindly request that you cite our paper. Below is the BibTeX entry for your convenience:
+
+
+```bibtex
 @article{lu2024process,
   title={Process-Driven Autoformalization in Lean 4},
   author={Lu, Jianqiao and Liu, Zhengying and Wan, Yingjia and Huang, Yinya and Wang, Haiming and Yang, Zhicheng and Tang, Jing and Guo, Zhijiang},
   journal={arXiv preprint arXiv:2406.01940},
   year={2024}
 }
+```
+
+Thank you for considering our work for your research.
 
 
 Feel free to reach out with questions or for collaboration.
