@@ -114,8 +114,12 @@ This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/
 
 ## Citation
 If you find the methods and resources outlined in this work to be beneficial, please kindly cite our paper:
-- [ ] to be released soon
-
+@article{lu2024process,
+  title={Process-Driven Autoformalization in Lean 4},
+  author={Lu, Jianqiao and Liu, Zhengying and Wan, Yingjia and Huang, Yinya and Wang, Haiming and Yang, Zhicheng and Tang, Jing and Guo, Zhijiang},
+  journal={arXiv preprint arXiv:2406.01940},
+  year={2024}
+}
 
 
 Feel free to reach out with questions or for collaboration.
