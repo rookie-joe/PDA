@@ -17,15 +17,24 @@ An overview of process-driven autoformalization (PDA):
 
 ```
 PDA
+├── annotation
+│   ├── informalization_autoformalization
+│   ├── model_comparison
+│   └── README.md
 ├── code
-│   ├── Automatic-Lean4-Compilation [ref]
-│   └── Training-Scripts [todo]    
-│       
+│   ├── Automatic-Lean4-Compilation
+│   ├── Dataset-Informalization
+│   ├── google-cloud-sdk
+│   └── Training-Scripts
 ├── data
-│   ├── basic_test.json
-│   ├── random_test.json
-│   ├── real_test.jsonl
-│   └── train.json
+│   ├── FormL4
+│   │   ├── basic_test.json
+│   │   ├── random_test.json
+│   │   ├── real_test.json
+│   │   └── train.json
+│   └── raw.zip
+├── prompt
+└── requirements.txt
 ```
 
 ## Dataset 
