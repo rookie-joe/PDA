@@ -2,3 +2,4 @@ tqdm
 vertexai
 google-cloud-aiplatform
 python-dotenv
+openai
