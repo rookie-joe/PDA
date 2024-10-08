@@ -43,14 +43,21 @@ The **<span style="font-variant: small-caps;">forml4</span>** dataset is organiz
 - `random_test.json`: The random test set (950) contains a diverse and randomly selected set of problems. 
 - `real_test.jsonl`: The real test set represents the out-of-domain test set, featuring 967 natural language mathematics questions and answers distilled from the Arithmo test set. 
 
-## Code 
+## Code
 
-- [x] **Applying Lean 4 Compiler**: Please visit our GitHub repository for more details about how to automate your Lean 4 installation and compilation: [**Automatic Lean 4 Compilation Guide**](https://github.com/rookie-joe/automatic-lean4-compilation)
+- `Dataset-Informalization`: This folder contains code used to construct the FormL4 dataset. See the `README.md` in the folder for details about replication.
+
+- `Automatic-Lean4-Compilation`: Please visit our GitHub repository for more details about how to automate your Lean 4 installation and compilation: [**Automatic Lean 4 Compilation Guide**](https://github.com/rookie-joe/automatic-lean4-compilation)
 
 - [ ] Training/Evaluating autoformalizer and verifier based on (**<span style="font-variant: small-caps;">forml4</span>**) 
 
-## Human Evaluation
-Human annotations are provided in the `annotation` sub-directory. See the `README.md` in the sub-directory for details.
+## Human Evaluation Results
+Human annotations are provided in the `annotation` sub-directory. It contains human evaluation results for three stages of PDA:
+- **Before informalization (stage I)**: We conduct a human evaluation on cross-model preference comparison between gpt-4o and gemini-pro-1.5 (sample size = 10);
+- **After informalization (stage II)**: After informalizating the FormL4 dataset, we conduct a manual quality check on informalization success by randomly sampling from three different test sets (sample size = 60).
+- **After autoformalization training (stage III)**: After completing training and enhancing the autoformalizer model, the model's autoformalization output was evaluated by human evaluators (sample size = 80).
+
+See the `README.md` in the sub-directory for details.
 
 ## Results
 
