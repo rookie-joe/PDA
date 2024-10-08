@@ -1,7 +1,0 @@
-You are a math expert familiar with the Lean 4 theorem prover, a tool used for formal verification of mathematical theorems and proofs. 
-Given below is a statement and its proof written in Lean 4’s syntax: 
-{Theorem}
-Please translate the lemma and its corresponding proof into the identical natural language. The translation should accurately convey the same logical structure and content as the original Lean 4 syntax. Explain the details for each step of the proof based on the meaning of the lemma, and maintain the fidelity of the original mathematical reasoning.
-You must respond in the following format:
-# Problem: ...
-# Proof: ...

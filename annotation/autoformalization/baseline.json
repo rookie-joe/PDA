@@ -1,0 +1,242 @@
+[
+    {
+        "nl_statement": "Given a premeasure `p` and a set `s`, prove that the outer measure of `s` with respect to `p` is zero if and only if the support of `p` is disjoint from `s`.",
+        "nl_proof": "We need to prove both directions of the \"if and only if\" statement.\n\n**Direction 1: If the outer measure of `s` is 0, then the support of `p` is disjoint from `s`.**\n\n1. Assume that the outer measure of `s` with respect to `p` is 0. \n2. This means that we can cover `s` with a countable collection of sets from the premeasure `p`, such that the sum of their premeasures is 0.\n3. Since premeasures are non-negative, the only way the sum can be 0 is if each individual premeasure is 0.\n4. If a set has a premeasure of 0, it means that it doesn't intersect with the support of `p` (because the support only includes sets with non-zero premeasure).\n5. Therefore, `s` cannot intersect with the support of `p`, meaning they are disjoint.\n\n**Direction 2: If the support of `p` is disjoint from `s`, then the outer measure of `s` is 0.**\n\n1. Assume that the support of `p` is disjoint from `s`.\n2. We can cover `s` with a single set: `s` itself.\n3. Since `s` is disjoint from the support of `p`, its premeasure is 0.\n4. Therefore, we have covered `s` with a collection of sets (just one set in this case) whose premeasures sum to 0.\n5. This means that the outer measure of `s` is 0.\n\nSince we have proven both directions, we have shown that the outer measure of `s` with respect to `p` is zero if and only if the support of `p` is disjoint from `s`.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem toOuterMeasure_apply_eq_zero_iff_disjoint : p.toOuterMeasure s = 0 \u2194 Disjoint p.support s := by\n   rw [\u2190 toOuterMeasure_apply_eq_sum_restrict, toOuterMeasure_apply_eq_sum_iff]\n   exact premeasure_restrict_eq_zero_iff.trans disjoint_singleton_right\n ",
+        "pda_valid": true,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that the element at the \\(i\\)-th row and \\(i\\)-th column of the characteristic matrix of a matrix \\(M\\) is equal to \\(X\\) minus the image of the element at the \\(i\\)-th row and \\(i\\)-th column of \\(M\\) under the canonical ring homomorphism \\(C\\) from a ring \\(R\\) to the polynomial ring \\(R[X]\\).",
+        "nl_proof": "1. We start by considering the element at the \\(i\\)-th row and \\(i\\)-th column of the characteristic matrix of \\(M\\), denoted as `charmatrix M i i`.\n2. By definition, the characteristic matrix is constructed by subtracting the image of each element of \\(M\\) under \\(C\\) from \\(X\\) along the diagonal and keeping other elements as they are.\n3. Therefore, the element at the \\(i\\)-th row and \\(i\\)-th column of the characteristic matrix is obtained by subtracting the image of the element at the \\(i\\)-th row and \\(i\\)-th column of \\(M\\) under \\(C\\) from \\(X\\).\n4. This can be formally written as \\(X\\) minus \\(C (M i i)\\), where \\(C (M i i)\\) represents the image of the \\(i\\)-th row and \\(i\\)-th column element of \\(M\\) under \\(C\\).\n5. Hence, we have shown that `charmatrix M i i = (X : R[X]) - C (M i i)`.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem charmatrix_self (i : n) : charmatrix M i i = (X : R[X]) - C (M i i) := by\n   rw [charmatrix, sub_self]\n ",
+        "pda_valid": true,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that the positive tangent cone of the universal set (the set containing everything) at any point 'a' is equal to the universal set itself.",
+        "nl_proof": "1. To prove that the positive tangent cone of the universal set at point 'a' is the universal set, we need to show that every point belongs to this positive tangent cone.\n2. Consider any point 'b'. We want to show that 'b' belongs to the positive tangent cone of the universal set at 'a'.\n3. Imagine drawing a line segment starting from 'a' and going towards 'b'. \n4. Since the universal set contains all points, this entire line segment must lie within the universal set.\n5. Therefore, by the lemma `mem_posTangentConeAt_of_segment_subset'`, point 'b' belongs to the positive tangent cone of the universal set at 'a'.\n6. Since 'b' was an arbitrary point, this argument holds for any point.\n7. Thus, every point belongs to the positive tangent cone of the universal set at 'a', making it equal to the universal set itself.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem posTangentConeAt_univ : posTangentConeAt univ a = univ :=\n   eq_univ_of_forall fun _ => mem_posTangentConeAt_of_segment_subset' univ\n ",
+        "pda_valid": true,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that the Carath\u00e9odory outer measure induced by the outer measure generated by a premeasure 'p' is equal to the top element of the lattice, meaning it assigns infinite measure to all sets.",
+        "nl_proof": "1. **Goal:** We aim to show that the Carath\u00e9odory outer measure derived from 'p' is the top element, meaning it's greater than or equal to every other outer measure.\n2. **Strategy:** To prove this, we'll demonstrate that for any arbitrary set, the Carath\u00e9odory outer measure assigns a value greater than or equal to what any other outer measure would assign.\n3. **Dirac Measures:** We utilize Dirac measures, which assign a value of 1 to sets containing a specific point and 0 otherwise. For any point 'y' in our set, we consider the Dirac measure centered at 'y'.\n4. **Carath\u00e9odory Property:** Due to the Carath\u00e9odory construction, we know that our outer measure of any set is less than or equal to the sum of its values on two sets that \"split\" the original set in a specific way.\n5. **Combining Inequalities:** We combine the fact that the Dirac measure is less than or equal to the Carath\u00e9odory outer measure (by definition of Dirac) and the Carath\u00e9odory property. This allows us to relate the Carath\u00e9odory outer measure to the value assigned by any other outer measure.\n6. **Taking the Supremum:** Since this holds for any point 'y', we can take the supremum over all 'y' and still maintain the inequality. This establishes that the Carath\u00e9odory outer measure is greater than or equal to the other outer measure for any arbitrary set.\n7. **Conclusion:** As this holds for any arbitrary outer measure, we conclude that the Carath\u00e9odory outer measure is the top element, assigning infinite measure to every set.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem toOuterMeasure_caratheodory : p.toOuterMeasure.caratheodory = \u22a4 := by\n   refine' eq_top_iff.2 fun y => le_trans (dirac y).le (le_sum_of_le_left _ _ _)\n   exact (le_sum_left_iff _ _).2 fun x hx => le_sum_left_iff.2 fun z hz => le_sum_left_iff.2 fun w hw =>\n     le_sum_left_iff.2 fun u hu => le_sum_left_iff.2 fun v hv => le_sum_left_iff.2 fun t ht =>\n       le_sum_left_iff.2 fun x' hx' => le_sum_left_iff.2 fun y' hy' => le_sum_left_iff.2 fun z' hz' =>\n         le_sum_left_iff.2 fun w' hw' => le_sum_left_iff.2 fun u' hu' => _\n   \u00b7 exact le_caratheodory \u27e8x, hx, z, hz, w, hw, u, hu, v, hv, t, ht, x', hx', y', hy', z', hz', w', hw',\n       u', hu', t, ht, hv, hx'\u27e9\n   \u00b7 rw [caratheodory_apply, sum_empty]\n ",
+        "pda_valid": true,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that applying a linear transformation, denoted by Q, to the zero vector of a vector space results in the zero vector of another vector space.",
+        "nl_proof": "1. We want to show that applying the linear transformation Q to the zero vector results in the zero vector, or Q(0) = 0. \n2. We can express the zero vector as a scalar multiplication: 0 = 0 * v, where v is any vector.\n3. Using the `map_smul` property of linear transformations, we have Q(0 * v) = 0 * Q(v).\n4. From the `zero_smul` property, we know that 0 * v = 0. Substituting this back, we get Q(0) = 0 * Q(v).\n5. Finally, using the `zero_mul` property, we know that 0 multiplied by any vector Q(v) results in the zero vector. Therefore, Q(0) = 0.\n\nThis proves that applying any linear transformation Q to the zero vector always results in the zero vector.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem map_zero : Q 0 = 0 := by\n   rw [\u2190 zero_smul R v, map_smul, zero_mul]\n ",
+        "pda_valid": true,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that the hyperbolic cosine function (cosh) is measurable.",
+        "nl_proof": "1. We know that the hyperbolic cosine function (cosh) is continuous.\n2. Since continuous functions are measurable, we can conclude that the hyperbolic cosine function (cosh) is also measurable.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem measurable_cosh : Measurable cosh :=\n   continuous_cosh.measurable\n ",
+        "pda_valid": false,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that applying `.toFun` to a function `f` is the same as directly applying `f` using the notation `\u21d1f`.",
+        "nl_proof": "The statement is true by definition.  The `.toFun` operation on a function `f` is defined to be the same as applying `f` directly. Therefore, there is nothing to prove, as the two sides are immediately equivalent.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem toFun_eq_coe : f.toFun = \u21d1f :=\n   rfl\n ",
+        "pda_valid": false,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Given a function Q that takes elements from a module M (over a ring R) and outputs elements in R, prove that there exists a bilinear form B on M such that for any x and y in M, the equation Q(x + y) = Q(x) + Q(y) + B(x, y) holds.",
+        "nl_proof": "The existence of the desired bilinear form B is directly guaranteed by the lemma `Q.exists_companion'`. This lemma, based on the properties of Q, likely provides a way to construct B such that it satisfies the equation Q(x + y) = Q(x) + Q(y) + B(x, y) for all x and y in M. Therefore, the existence of such a B is established.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem exists_companion : \u2203 B : BilinForm R M, \u2200 x y : M, Q (x + y) = Q x + Q y + B x y :=\n   Q.exists_companion'\n ",
+        "pda_valid": false,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that the function `Q.toFun` is equal to the coercion function `\u21d1Q`.",
+        "nl_proof": "The proof follows directly from the definition of `Q.toFun`. By definition, `Q.toFun` is equivalent to the coercion function `\u21d1Q`. Therefore, the statement holds true.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem toFun_eq_coe : Q.toFun = \u21d1Q :=\n   rfl\n ",
+        "pda_valid": false,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that decoding the natural number 0 results in the unit value wrapped in the `some` constructor.",
+        "nl_proof": "By definition, the `decode` function, when applied to the natural number 0, directly produces the value `some PUnit.unit`. This is because 0 is presumably the intended encoding for the `PUnit.unit` value. Therefore, the statement `decode 0 = some PUnit.unit` holds true by definition.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem decode_zero' : decode 0 = some PUnit.unit :=\n   rfl\n ",
+        "pda_valid": false,
+        "source": "lean_basic",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Positive integers $a$, $b$, and $c$ are chosen so that $a<b<c$, and the system of equations \\[\n2x + y = 2003\\quad\\text{and}\\quad y = |x-a| + |x-b| + |x-c|\n\\]has exactly one solution. What is the minimum value of $c$?",
+        "nl_proof": "Since the system has exactly one solution, the graphs of the two equations must intersect at exactly one point. If $x<a$, the equation $y = |x-a| + |x-b| + |x-c|$ is equivalent to $y =-3x + (a+b+c)$. By similar calculations we obtain\n\n\\[\ny =\n\\begin{cases}\n-3x + (a+b+c), &\\text{if }x<a\\\\\n-x + (-a+b+c), &\\text{if }a\\le x<b\\\\\nx + (-a-b+c), &\\text{if }b\\le x<c\\\\\n3x + (-a-b-c), &\\text{if }c\\le x.\n\\end{cases}\n\\]Thus the graph consists of four lines with slopes $-3$, $-1$, 1, and 3, and it has corners at $(a, b+c-2a)$, $(b, c-a)$, and $(c,\n2c-a-b)$.\n\nOn the other hand, the graph of $2x+y = 2003$ is a line whose slope is $-2$. If the graphs intersect at exactly one point, that point must be $(a, b+c-2a).$ Therefore\n\n$ 2003 = 2a + (b+c-2a) = b+c. $\n\nSince $b<c$, the minimum value of $c$ is $\\boxed{1002}$.\nThe answer is 1002\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem eq_1100 : c = 1002 := by\n   rw [min_eq_iff_eq_and_le]\n   rw [le_eq_iff_eq_le]\n   rw [\u2190 sub_add, \u2190 sub_add, add_assoc, sub_add_cancel, \u2190 sub_self]\n   exact (sub_nonneg (a + b) zero_le_two).antisymm (add_nonneg b (2 * 1001))\n ",
+        "pda_valid": true,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Given that $2^x+ 2^x+ 2^x+ 2^x= 128$, what is the value of $(x + 1)(x - 1)$?",
+        "nl_proof": "First, we simplify the left side, and we have \\[2^x+2^x+2^x+2^x = 4\\cdot 2^x = 2^2\\cdot 2^x = 2^{x+2}.\\]Noting that $128 = 2^7$, our equation now is $2^{x+2} = 2^7$, so $x+2 = 7$.  Therefore, $x=5$, and $(x+1)(x-1) = (6)(4) = \\boxed{24}$.\nThe answer is 24\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem eq_24 : (x + 1) * (x - 1) = 24 := by\n   have h1 : 2 ^ x + 2 ^ x + 2 ^ x + 2 ^ x = 128 := by rw [add_add_add_comm]; simp\n   rw [h1, pow_add, pow_one, pow_neg, pow_add, \u2190 two_mul, pow_add, pow_add, pow_one,\n     pow_neg, pow_add, pow_add, pow_one, pow_neg, pow_add, pow_add, pow_one]\n   have h2 : 2 ^ 5 + 2 ^ 5 + 2 ^ 5 + 2 ^ 5 = 128 := by rw [h1, add_add_add_comm, \u2190 \u20392 ^ (x + 2) = 128\u203a,\n     mul_comm, mul_assoc, mul_right_comm]\n   rw [\u2190 h2, mul_comm]\n ",
+        "pda_valid": true,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "If $a$ is a constant such that $9x^2 + 24x + a$ is the square of a binomial, then what is $a$?",
+        "nl_proof": "If $9x^2 +24x + a$ is the square of a binomial, then the binomial has the form $3x +b$ for some number $b$, because $(3x)^2 = 9x^2$.  So, we compare $(3x+b)^2$ to $9x^2 + 24x + a$. Expanding $(3x+b)^2$ gives \\[(3x+b)^2 = (3x)^2 + 2(3x)(b) + b^2 = 9x^2 + 6bx + b^2.\\]Equating the linear term of this to the linear term of $9x^2+24x+a$, we have $6bx=24x$, so $b=4$.  Equating the constant term of $9x^2 + 6bx + b^2$ to that of $9x^2 + 24x+a$ gives us $a=b^2 = \\boxed{16}$.\nThe answer is 16\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem isSquare_eq_16 : IsSquare a \u2194 a = 16 := by\n   rw [isSquare_iff_exists_linear_eq_sq, \u2190 sq_linear_eq_sq_iff']\n   set_option tactic.skipAssignedInstances false in norm_num\n   rw [mul_comm, mul_assoc]\n   exact mul_right_cancel\u2080 (mul_ne_zero 3 3)\n ",
+        "pda_valid": true,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "A cylindrical water tank is $\\frac{1}{5}$ full. If three liters were added, the tank would be $\\frac{1}{4}$ full. How many liters does the tank hold when it is full?",
+        "nl_proof": "Let the number of liters of water in the tank originally be $w$, and let the number of liters of water the tank can hold when it is full be $c$. Originally, we have the equation $\\frac{w}{c}=\\frac{1}{5}$. Cross multiplying, we have $c = 5w$, or $w=\\frac{c}{5}$. After three liters of water are added, we have the equation $\\frac{w+3}{c} = \\frac{1}{4}$. Cross multiplying, we have $c=4w+12$. Substituting the previous expression for $w$ into this last equation to eliminate $w$, we get $c=4(\\frac{c}{5})+12$, or $c=60$. Thus, the number of liters of water the tank can hold is $\\boxed{60}$.\nThe answer is 60\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem cylinder_add_three_eq_one_div_four (h\u2081 : 1 \u2264 5) (h\u2082 : 1 \u2264 4) : (w + 3 : \u2115) = 1 / 4 :=\n   show w + 3 = c / 4 by\n     rw [\u2190 div_eq_mul_inv, \u2190 mul_assoc, \u2190 mul_assoc, mul_inv_cancel h\u2081 h\u2082, mul_div_cancel_left _ h\u2081,\n       mul_div_cancel_left _ h\u2082, \u2190 mul_assoc]\n ",
+        "pda_valid": true,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Bonnie makes the frame of a cube out of 12 pieces of wire that are each six inches long. Meanwhile Roark uses 1-inch-long pieces of wire to make a collection of unit cube frames that are not connected to each other. The total volume of Roark's cubes is the same as the volume of Bonnie's cube. What is the ratio of the total length of Bonnie's wire to the total length of Roark's wire? Express your answer as a common fraction. [asy]\nsize(50);\ndraw((0,0)--(4,0)--(4,4)--(0,4)--cycle);\ndraw((3,1)--(7,1)--(7,5)--(3,5)--cycle);\ndraw((0,0)--(3,1));\ndraw((4,0)--(7,1));\ndraw((4,4)--(7,5));\ndraw((0,4)--(3,5));\n[/asy]",
+        "nl_proof": "The total length of Bonnie's wire is $12\\cdot6=72$ inches, while her total volume is $6^3=216$ cubic inches. Each of Roark's unit cubes has volume $1$ cubic inch, so he needs $216$ cubes.\n\nSince each cube has $12$ edges, each of Roark's cubes has $12\\cdot1=12$ inches of wire. So his $216$ cubes have a total of $216\\cdot12$ inches of wire.\n\nSo the desired fraction is $\\dfrac{72}{216\\cdot12}=\\dfrac{6}{216}=\\boxed{\\dfrac{1}{36}}$.\nThe answer is \\dfrac{1}{36}\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem roark_cube : (12 * 6 : \u211a) / (216 : \u211a) = 1 / 36 := by simp\n ",
+        "pda_valid": true,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Simplify the fraction $\\dfrac{88}{7744}.$",
+        "nl_proof": "Since $88$ and $7744$ share a common factor of $88$, we can simplify $$\\dfrac{88}{7744}=\\dfrac{1 \\cdot 88}{88 \\cdot 88} = \\dfrac{1 \\cdot \\cancel{88}}{88 \\cdot \\cancel{88}} = \\boxed{\\dfrac{1}{88}}.$$\nThe answer is \\dfrac{1}{88}\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem one_div_eighty_eight : 88 / 7744 = 1 / 88 := by simp\n ",
+        "pda_valid": false,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Simplify: $|{-3^2+4}|$",
+        "nl_proof": "We calculate as follows: \\[\n|{-3^2+4}|=|{-9+4}|=|{-5}|=\\boxed{5}.\\] Note that $-3^2=-9$ because our conventions for carrying out operations dictate that exponentiation should be done before negation. Hence $-3^2$ means $-(3^2)$ rather than $(-3)^2$.\nThe answer is 5\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem abs_neg_cubed_add_four : |-3 ^ 2 + 4| = 5 := by simp\n ",
+        "pda_valid": false,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Compute $(-64)\\div (-32)$.",
+        "nl_proof": "When $y$ is nonzero, we have $(-x)\\div (-y) = x\\div y$, so \\[(-64)\\div (-32) = 64\\div 32= \\boxed{2}.\\]\nThe answer is 2\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem neg_div_neg : (-64) / (-32) = 2 := by simp\n ",
+        "pda_valid": false,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Express eleven in base 2.",
+        "nl_proof": "We have $11=1\\cdot 2^3 + 0 \\cdot 2^2 + 1\\cdot 2^1 + 1\\cdot 2^0,$ so $11=\\boxed{1011_2}$.\nThe answer is 1011_2\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem eleven_as_bit_vector : (11 : \u2115) = 0b1011 := by rfl\n ",
+        "pda_valid": false,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Completely factor the following expression: \\[(6a^3+92a^2-7)-(-7a^3+a^2-7)\\]",
+        "nl_proof": "First, we combine like terms in the expression: \\begin{align*}\n&(6a^3+92a^2-7)-(-7a^3+a^2-7)\\\\\n& \\qquad=6a^3+92a^2-7+7a^3-a^2+7\\\\\n&\\qquad=13a^3+91a^2.\n\\end{align*}We can factor out a $13a^2$ from the expression, to get \\[13a^3+91a^2=\\boxed{13a^2(a+7)}.\\]\nThe answer is 13a^2(a+7)\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem factor_quadratic_add_cubic : (6 * a ^ 3 + 92 * a ^ 2 - 7) - (-7 * a ^ 3 + a ^ 2 - 7) = 13 * a ^ 2 * (a + 7) := by\n   ring\n ",
+        "pda_valid": false,
+        "source": "math",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that the measure of an open ball in a metric space is always greater than 0, given that the radius of the ball is greater than 0.",
+        "nl_proof": "1. We are given an open ball centered at point `x` with radius `r`, where `r` is a positive real number.\n2. Since `r` is positive, the open ball is not empty; it contains points of our metric space.\n3. Open balls, by their definition, are considered \"open\" sets in the metric space.\n4. An important property of measures is that they assign a size greater than 0 to any open set that's not empty.\n5. Therefore, the measure of our open ball, which we know is both not empty and an open set, must be greater than 0.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem measure_ball_pos (hr : 0 < r) : 0 < \u03bc (Metric.ball x r) :=\n   measure_open_pos _ <| Nonempty.intro <| Metric.ball_nonempty hr\n ",
+        "pda_valid": true,
+        "source": "lean_random",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that for any three finite sets \\( s\u2081 \\), \\( s\u2082 \\), and \\( s\u2083 \\), if \\( s\u2081 \\) is a superset of \\( s\u2082 \\) and \\( s\u2082 \\) is a superset of \\( s\u2083 \\), then \\( s\u2081 \\) is a superset of \\( s\u2083 \\).",
+        "nl_proof": "1. We are given that \\( s\u2081 \\) is a superset of \\( s\u2082 \\). This means that every element in \\( s\u2082 \\) is also an element of \\( s\u2081 \\).\n2. We are also given that \\( s\u2082 \\) is a superset of \\( s\u2083 \\). This means that every element in \\( s\u2083 \\) is also an element of \\( s\u2082 \\).\n3. Now, consider any element in \\( s\u2083 \\). Since \\( s\u2082 \\) is a superset of \\( s\u2083 \\), this element must also be in \\( s\u2082 \\).\n4. Furthermore, since \\( s\u2081 \\) is a superset of \\( s\u2082 \\), and the element is in \\( s\u2082 \\), it must also be in \\( s\u2081 \\).\n5. Therefore, any element in \\( s\u2083 \\) is also in \\( s\u2081 \\).\n6. This proves that  \\( s\u2081 \\) is a superset of \\( s\u2083 \\).\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem Superset.trans {s\u2081 s\u2082 s\u2083 : Finset \u03b1} (h\u2081 : s\u2081 \u2286 s\u2082) (h\u2082 : s\u2082 \u2286 s\u2083) : s\u2081 \u2286 s\u2083 :=\n   h\u2081.mono h\u2082\n ",
+        "pda_valid": true,
+        "source": "lean_random",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that in any nontrivial multiplicative group `M\u2080`, the element `0` is a primitive root of unity of order `0`.",
+        "nl_proof": "We need to demonstrate two things for `0` to be a primitive `0`th root of unity in `M\u2080`:\n\n1. **`0^0 = 1`**: This is generally true for elements in a group (any element raised to the power `0` equals the identity element).\n2. **No smaller `k` exists**: We need to show there is no positive integer `k < 0` such that `0^k = 1`. Since there are no positive integers smaller than `0`, this condition is automatically satisfied.\n\nTherefore, in a nontrivial multiplicative group `M\u2080`, the element `0` is a primitive root of unity of order `0`.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem isPrimitiveRoot_zero [Nontrivial M\u2080] : IsPrimitiveRoot (0 : M\u2080) 0 :=\n   \u27e8pow_zero (0 : M\u2080), fun k hk =>\n     not_lt_of_ge (Nat.cast_nonneg _) (Nat.cast_lt.not.1 <| hk.trans_le <| Nat.zero_le _)\u27e9\n ",
+        "pda_valid": true,
+        "source": "lean_random",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Let's say we have a way to represent a mathematical expression called \"P\". This expression \"P\" has a specific term we call \"b\". We also have a way to transform this expression \"P\" into a polynomial, and we call this transformed polynomial \"P.toPoly\".  Prove that if the term \"b\" in our expression \"P\" is not equal to zero, then the polynomial representation of \"P\", denoted as \"P.toPoly\", is also not equal to zero.",
+        "nl_proof": "1. We begin with the given fact: the term \"b\" in our mathematical expression \"P\" is not equal to zero.\n2. We know there's a rule (from the `ne_zero` theorem/lemma) that helps us figure out when a polynomial is not equal to zero. This rule likely involves checking if any of the polynomial's coefficients are non-zero.\n3. We carefully examine this rule, breaking it down using logical steps (`or_imp.mp`).\n4. Due to the way our expression \"P\" is structured and the fact that \"b\" is not zero, we can apply this rule to the polynomial representation of \"P\", which is \"P.toPoly\". \n5. By applying this rule, we demonstrate that \"P.toPoly\" must also have at least one non-zero coefficient.\n6. Therefore, because it has a non-zero coefficient, the entire polynomial \"P.toPoly\" cannot be equal to zero.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem toPoly_ne_zero (hb : b \u2260 0) : P.toPoly \u2260 0 :=\n   (ne_zero.mp (or_imp.mp hb)).1\n ",
+        "pda_valid": true,
+        "source": "lean_random",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that for any two elements 'a' and 'b', applying a strictly increasing function 'ofAdd' to them preserves the order, meaning if 'a' is less than or equal to 'b', then 'ofAdd(a)' is less than or equal to 'ofAdd(b)', and vice versa.",
+        "nl_proof": "The statement holds directly by the definition of a strictly increasing function. If `ofAdd` is a strictly increasing function, then it's inherently defined to preserve the order of elements. This means that if 'a' is less than or equal to 'b', then 'ofAdd(a)' must be less than or equal to 'ofAdd(b)', and the other way around. Since this is a fundamental property of strictly increasing functions, the statement is immediately true.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem ofAdd_mono : Monotone (ofAdd : \u03b1 \u2192 Additive \u03b1) :=\n   monotone_of_strictMono _\n ",
+        "pda_valid": true,
+        "source": "lean_random",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that any function `f` from a set `\u03b9` to a set `\u03b1` is \"monovariant\" with itself. In simpler terms, if we apply `f` to two arguments and the first argument is less than the second, then applying `f` won't change that order.",
+        "nl_proof": "1. Let's imagine we have two elements from the set `\u03b9`. We'll call them `x` and `y`.\n2. We are given that `x < y`. This means `x` comes before `y` in the order of elements within the set `\u03b9`.\n3. Our goal is to prove that applying the function `f` doesn't change this order.  In other words, we need to show that `f(x) \u2264 f(y)`.\n4. Since `x < y`, we can directly apply the lemma `le_of_lt` to conclude that `x \u2264 y`.\n5. Since `f(x)` and `f(y)` are just the results of applying the function `f` to `x` and `y` respectively, and we know `x \u2264 y`, we can conclude that `f(x) \u2264 f(y)`.  This is because applying the same function `f` doesn't change the relative order of the results.\n6. Therefore, we have shown that if `x < y`, then `f(x) \u2264 f(y)`. This holds true for any arbitrary elements `x` and `y` from the set `\u03b9`.\n\nTherefore, the function `f` is \"monovariant\" with itself, meaning it preserves the order of elements when applied to its inputs.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem monovary_self : Monovary f f := fun _ _ => le_of_lt\n ",
+        "pda_valid": false,
+        "source": "lean_random",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Let's say we have two functions, `f` and `g`, both of which map elements from a set `X` to a set `Y`. We then construct a new function, called `parallelPair f g`, which takes a pair of elements from `X` and applies `f` to the first element and `g` to the second element. Prove that applying this new function to a special pair, where both elements are the 'zero' element of `X`, results in the set `X` itself.",
+        "nl_proof": "1. By definition, applying `parallelPair f g` to the pair `(zero, zero)` means we apply `f` to the first `zero` and `g` to the second `zero`. \n2. However, since both `f` and `g` map from `X` to `Y`, applying them to an element of `X` (in this case, `zero`) will still result in something related to `X`, even if the output is in `Y`.\n3. Therefore, the result of `(parallelPair f g).obj zero` is inherently tied to the structure of `X` due to the domain of `f` and `g`.\n4. Since the statement is fundamentally true by the definition of the function and its input, we can conclude using `rfl` that `(parallelPair f g).obj zero = X`.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem parallelPair_zero (f g : X \u27f6 Y) : (parallelPair f g).obj zero = X :=\n   rfl\n ",
+        "pda_valid": false,
+        "source": "lean_random",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that for any element \\( a \\) and finite set \\( s \\), checking if \\( a \\) belongs to \\( s \\) is the same as checking if \\( a \\) belongs to the underlying implementation of \\( s \\).",
+        "nl_proof": "The statement holds trivially because the membership check for a finite set (`a \u2208 s`) is directly defined in terms of checking membership within its underlying implementation (`a \u2208 s.1`). Therefore, both expressions represent the same operation and are inherently equivalent.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem mem_val {a : \u03b1} {s : Finset \u03b1} : a \u2208 s \u2194 a \u2208 s.1 :=\n   Iff.rfl\n ",
+        "pda_valid": false,
+        "source": "lean_random",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that the preimage of the open interval (b, c) under the function that adds a constant 'a' to a number is equal to the open interval (b - a, c - a).",
+        "nl_proof": "1. We need to prove that a number 'x' lies in the preimage of the interval (b, c) under the function 'x + a' if and only if it lies in the interval (b - a, c - a).\n2. A number 'x' belongs to the preimage of (b, c) under the function 'x + a' if and only if 'x + a' belongs to the interval (b, c).\n3. This means 'b < x + a < c'.\n4. Subtracting 'a' from all parts of the inequality, we get 'b - a < x < c - a'.\n5. This implies that 'x' belongs to the open interval (b - a, c - a).\n6. Conversely, if 'x' belongs to the interval (b - a, c - a), then 'b - a < x < c - a'.\n7. Adding 'a' to all parts of the inequality, we get 'b < x + a < c', which means 'x + a' belongs to the interval (b, c).\n8. Therefore, the preimage of the open interval (b, c) under the function 'x + a' is equal to the open interval (b - a, c - a).\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem preimage_add_const_Ioo : (fun x => x + a) \u207b\u00b9' Ioo b c = Ioo (b - a) (c - a) := by\n   simp [\u2190 Ici_inter_Iio, inter_comm, add_comm]\n ",
+        "pda_valid": false,
+        "source": "lean_random",
+        "model": "baseline"
+    },
+    {
+        "nl_statement": "Prove that the diagonal of a zero matrix of size n x n is a zero vector.",
+        "nl_proof": "Consider a zero matrix of size n x n. Its diagonal consists of elements at the same row and column index. Since every element of a zero matrix is zero, all elements on the diagonal are also zero. Therefore, the diagonal of a zero matrix is a zero vector. This is true by the definition of a zero matrix and a zero vector, hence the proof is self-evident.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem diag_zero [Zero \u03b1] : diag (0 : Matrix n n \u03b1) = 0 :=\n   rfl\n ",
+        "pda_valid": false,
+        "source": "lean_random",
+        "model": "baseline"
+    }
+]

@@ -1,0 +1,352 @@
+[
+    {
+        "formal": "theorem exists_companion : ∃ B : BilinForm R M, ∀ x y, Q (x + y) = Q x + Q y + B x y :=\n  Q.exists_companion'\n",
+        "nl_statement": "Given a function Q that takes elements from a module M (over a ring R) and outputs elements in R, prove that there exists a bilinear form B on M such that for any x and y in M, the equation Q(x + y) = Q(x) + Q(y) + B(x, y) holds.",
+        "nl_proof": "The existence of the desired bilinear form B is directly guaranteed by the lemma `Q.exists_companion'`. This lemma, based on the properties of Q, likely provides a way to construct B such that it satisfies the equation Q(x + y) = Q(x) + Q(y) + B(x, y) for all x and y in M. Therefore, the existence of such a B is established.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem exists_companion : ∃ B : BilinForm R M, ∀ x y : M, Q (x + y) = Q x + Q y + B x y :=\n   Q.exists_companion'\n ",
+        "source": "lean_basic",
+        "uuid": "6b65a6a4-8b81-48f6-b38a-088ca65ed389",
+        "human_eval_inform": false,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem measure_ball_pos (x : X) {r : ℝ} (hr : 0 < r) : 0 < μ (ball x r) :=\n   isOpen_ball.measure_pos μ (nonempty_ball.2 hr)\n ",
+        "nl_statement": "Prove that the measure of an open ball in a metric space is always greater than 0, given that the radius of the ball is greater than 0.",
+        "nl_proof": "1. We are given an open ball centered at point `x` with radius `r`, where `r` is a positive real number.\n2. Since `r` is positive, the open ball is not empty; it contains points of our metric space.\n3. Open balls, by their definition, are considered \"open\" sets in the metric space.\n4. An important property of measures is that they assign a size greater than 0 to any open set that's not empty.\n5. Therefore, the measure of our open ball, which we know is both not empty and an open set, must be greater than 0.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem measure_ball_pos (hr : 0 < r) : 0 < μ (Metric.ball x r) :=\n   measure_open_pos _ <| Nonempty.intro <| Metric.ball_nonempty hr\n ",
+        "source": "lean_random",
+        "uuid": "a9488d99-0bbb-2599-11ce-5dd2b45ed1f0",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem measurable_cosh : Measurable cosh :=\n  continuous_cosh.measurable\n",
+        "nl_statement": "Prove that the hyperbolic cosine function (cosh) is measurable.",
+        "nl_proof": "1. We know that the hyperbolic cosine function (cosh) is continuous.\n2. Since continuous functions are measurable, we can conclude that the hyperbolic cosine function (cosh) is also measurable.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem measurable_cosh : Measurable cosh :=\n   continuous_cosh.measurable\n ",
+        "source": "lean_basic",
+        "uuid": "e27a984d-6548-21d0-7fcd-9eb1a7cad415",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem measurable_ofReal : Measurable ((↑) : ℝ → ℂ) :=\n  continuous_ofReal.measurable\n",
+        "nl_statement": "Prove that the function which maps a real number to its corresponding complex number is measurable.",
+        "nl_proof": "1. We know that the function mapping real numbers to complex numbers is continuous.\n2. We also know that any continuous function is measurable.\n3. Therefore, the function mapping real numbers to complex numbers is measurable.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem measurable_re_to_complex : Measurable fun x : ℝ => (x : ℂ) :=\n   continuous_re_to_complex.measurable\n ",
+        "source": "lean_basic",
+        "uuid": "5304317f-af42-e12f-3838-b3268e944239",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem map_nhds_eq (x : H) : map I (𝓝 x) = 𝓝[range I] I x :=\n   I.closedEmbedding.toEmbedding.map_nhds_eq x\n ",
+        "nl_statement": "Let \\(H\\) be a set and \\(I\\) be a function from \\(H\\) to another set. This theorem states that for every element \\(x\\) in \\(H\\), the image of the neighborhood of \\(x\\) under the function \\(I\\) is equal to the neighborhood of the image of \\(x\\) within the range of \\(I\\).",
+        "nl_proof": "1. Consider a point \\(x\\) in the set \\(H\\).\n2. Imagine a small region around \\(x\\), which represents the neighborhood of \\(x\\), denoted by \\(𝓝 x\\).\n3. We apply the function \\(I\\) to every point within this neighborhood, obtaining a new set of points, which is the image of the neighborhood under \\(I\\), denoted as \\(map I (𝓝 x)\\).\n4. Now, let's look at the image of \\(x\\) under \\(I\\), denoted as \\(I x\\). This point resides within the range of \\(I\\).\n5. We can also consider a neighborhood around \\(I x\\), denoted as \\(𝓝[range I] I x\\), but we restrict this neighborhood to only include points that are within the range of \\(I\\).\n6. The theorem utilizes a property of \\(I\\) being a closed embedding, which essentially means that \\(I\\) preserves neighborhood structures in a specific way.\n7. This property guarantees that the image of the neighborhood of \\(x\\) under \\(I\\) (i.e., \\(map I (𝓝 x)\\)) is exactly the same as the neighborhood of \\(I x\\) within the range of \\(I\\) (i.e., \\(𝓝[range I] I x\\)).\n8. Therefore, we have proven that \\(map I (𝓝 x) = 𝓝[range I] I x\\) for any element \\(x\\) in \\(H\\).\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem map_nhds (x : H) : map I (𝓝 x) = 𝓝[range I] I x :=\n   I.toClosedEmbedding.map_nhds x\n ",
+        "source": "lean_random",
+        "uuid": "c0398710-8976-e334-e281-7efdae849217",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": null,
+        "nl_statement": "The curve $y = \\sin x$ cuts the line whose equation is $y = \\sin 70^\\circ$ into segments having the successive ratios\n\\[\\dots p : q : p : q \\dots\\]with $p < q.$  Compute the ordered pair of relatively prime positive integers $(p,q).$",
+        "nl_proof": "The graph of $y = \\sin x$ intersects the line $y = \\sin 70^\\circ$ at points of the form $(70^\\circ + 360^\\circ n, \\sin 70^\\circ)$ and $(110^\\circ + 360^\\circ n, \\sin 70^\\circ),$ where $n$ is an integer.\n\n[asy]\nunitsize(1.2 cm);\n\nreal func (real x) {\n  return(sin(x));\n}\n\ndraw(graph(func,-2*pi,2*pi),red);\ndraw((-2*pi,Sin(70))--(2*pi,Sin(70)),blue);\ndraw((-2*pi,0)--(2*pi,0));\ndraw((0,-1)--(0,1));\ndraw((70*pi/180,0)--(70*pi/180,Sin(70)),dashed);\ndraw((110*pi/180,0)--(110*pi/180,Sin(70)),dashed);\ndraw((-290*pi/180,0)--(-290*pi/180,Sin(70)),dashed);\ndraw((-250*pi/180,0)--(-250*pi/180,Sin(70)),dashed);\n\nlabel(\"$70^\\circ$\", (70*pi/180,0), S, fontsize(10));\nlabel(\"$110^\\circ$\", (110*pi/180,0), S, fontsize(10));\nlabel(\"$-290^\\circ$\", (-290*pi/180 - 0.1,0), S, fontsize(10));\nlabel(\"$-250^\\circ$\", (-250*pi/180 + 0.1,0), S, fontsize(10));\n[/asy]\n\nThe ratio of the lengths is then\n\\[\\frac{110 - 70}{70 + 250} = \\frac{40}{320} = \\frac{1}{8},\\]so $(p,q) = \\boxed{(1,8)}.$\nThe answer is (1,8)\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem sin_70_ratios : (1 : ℤ) / 8 = 1 / 8 := by simp\n ",
+        "source": "math",
+        "uuid": "98ae4334-6c12-ace8-ae34-0454cac5b68c",
+        "human_eval_inform": null,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": "theorem toFun_eq_coe : f.toFun = ⇑f :=\n  rfl\n",
+        "nl_statement": "Prove that applying `.toFun` to a function `f` is the same as directly applying `f` using the notation `⇑f`.",
+        "nl_proof": "The statement is true by definition.  The `.toFun` operation on a function `f` is defined to be the same as applying `f` directly. Therefore, there is nothing to prove, as the two sides are immediately equivalent.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem toFun_eq_coe : f.toFun = ⇑f :=\n   rfl\n ",
+        "source": "lean_basic",
+        "uuid": "b74d0fb1-32e7-0629-8fad-c1a606cb0fb3",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": null,
+        "nl_statement": "The equation $\\sin^2 x + \\sin^2 2x + \\sin^2 3x + \\sin^2 4x = 2$ can be reduced to the equivalent equation\n\\[\\cos ax \\cos bx \\cos cx = 0,\\]for some positive integers $a,$ $b,$ and $c.$  Find $a + b + c.$",
+        "nl_proof": "From the double angle formula,\n\\[\\frac{1 - \\cos 2x}{2} + \\frac{1 - \\cos 4x}{2} + \\frac{1 - \\cos 6x}{2} + \\frac{1 - \\cos 8x}{2} = 2,\\]so $\\cos 2x + \\cos 4x + \\cos 6x + \\cos 8x = 0.$  Then by sum-to-product,\n\\[\\cos 2x + \\cos 8x = 2 \\cos 5x \\cos 3x\\]and\n\\[\\cos 4x + \\cos 6x = 2 \\cos 5x \\cos x,\\]so\n\\[2 \\cos 5x \\cos 3x + 2 \\cos 5x \\cos x= 0,\\]or $\\cos 5x (\\cos x + \\cos 3x) = 0.$\n\nAgain by sum-to-product, $\\cos x + \\cos 3x = 2 \\cos 2x \\cos x,$ so this reduces to\n\\[\\cos x \\cos 2x \\cos 5x = 0.\\]Thus, $a + b + c = 1 + 2 + 5 = \\boxed{8}.$\nThe answer is 8\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem add_coe_sin_pow_two : (1 : ℤ) + (2 : ℤ) + (3 : ℤ) + (4 : ℤ) = 8 := by\n   simpa using @sin_pow_two_add_cos_mul_cos 2 4\n ",
+        "source": "math",
+        "uuid": "bf3c4c06-4343-08bc-89fa-6a688fb5d27b",
+        "human_eval_inform": null,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": null,
+        "nl_statement": "A cylindrical water tank is $\\frac{1}{5}$ full. If three liters were added, the tank would be $\\frac{1}{4}$ full. How many liters does the tank hold when it is full?",
+        "nl_proof": "Let the number of liters of water in the tank originally be $w$, and let the number of liters of water the tank can hold when it is full be $c$. Originally, we have the equation $\\frac{w}{c}=\\frac{1}{5}$. Cross multiplying, we have $c = 5w$, or $w=\\frac{c}{5}$. After three liters of water are added, we have the equation $\\frac{w+3}{c} = \\frac{1}{4}$. Cross multiplying, we have $c=4w+12$. Substituting the previous expression for $w$ into this last equation to eliminate $w$, we get $c=4(\\frac{c}{5})+12$, or $c=60$. Thus, the number of liters of water the tank can hold is $\\boxed{60}$.\nThe answer is 60\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem cylinder_add_three_eq_one_div_four (h₁ : 1 ≤ 5) (h₂ : 1 ≤ 4) : (w + 3 : ℕ) = 1 / 4 :=\n   show w + 3 = c / 4 by\n     rw [← div_eq_mul_inv, ← mul_assoc, ← mul_assoc, mul_inv_cancel h₁ h₂, mul_div_cancel_left _ h₁,\n       mul_div_cancel_left _ h₂, ← mul_assoc]\n ",
+        "source": "math",
+        "uuid": "5be6128e-18c2-6797-6142-ea7d17be3111",
+        "human_eval_inform": null,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": "theorem map_zero : Q 0 = 0 := by\n  rw [← @zero_smul R _ _ _ _ (0 : M), map_smul, zero_mul, zero_mul]\n",
+        "nl_statement": "Prove that applying a linear transformation, denoted by Q, to the zero vector of a vector space results in the zero vector of another vector space.",
+        "nl_proof": "1. We want to show that applying the linear transformation Q to the zero vector results in the zero vector, or Q(0) = 0. \n2. We can express the zero vector as a scalar multiplication: 0 = 0 * v, where v is any vector.\n3. Using the `map_smul` property of linear transformations, we have Q(0 * v) = 0 * Q(v).\n4. From the `zero_smul` property, we know that 0 * v = 0. Substituting this back, we get Q(0) = 0 * Q(v).\n5. Finally, using the `zero_mul` property, we know that 0 multiplied by any vector Q(v) results in the zero vector. Therefore, Q(0) = 0.\n\nThis proves that applying any linear transformation Q to the zero vector always results in the zero vector.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem map_zero : Q 0 = 0 := by\n   rw [← zero_smul R v, map_smul, zero_mul]\n ",
+        "source": "lean_basic",
+        "uuid": "17fc695a-07a0-ca6e-0822-e8f36c031199",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem ofAdd_le {a b : α} : ofAdd a ≤ ofAdd b ↔ a ≤ b :=\n   Iff.rfl\n ",
+        "nl_statement": "Prove that for any two elements 'a' and 'b', applying a strictly increasing function 'ofAdd' to them preserves the order, meaning if 'a' is less than or equal to 'b', then 'ofAdd(a)' is less than or equal to 'ofAdd(b)', and vice versa.",
+        "nl_proof": "The statement holds directly by the definition of a strictly increasing function. If `ofAdd` is a strictly increasing function, then it's inherently defined to preserve the order of elements. This means that if 'a' is less than or equal to 'b', then 'ofAdd(a)' must be less than or equal to 'ofAdd(b)', and the other way around. Since this is a fundamental property of strictly increasing functions, the statement is immediately true.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem ofAdd_mono : Monotone (ofAdd : α → Additive α) :=\n   monotone_of_strictMono _\n ",
+        "source": "lean_random",
+        "uuid": "29a3b2e9-5d65-a441-d588-42dea2bc372f",
+        "human_eval_inform": false,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": "theorem posTangentConeAt_univ : posTangentConeAt univ a = univ :=\n  eq_univ_of_forall fun _ => mem_posTangentConeAt_of_segment_subset' (subset_univ _)\n",
+        "nl_statement": "Prove that the positive tangent cone of the universal set (the set containing everything) at any point 'a' is equal to the universal set itself.",
+        "nl_proof": "1. To prove that the positive tangent cone of the universal set at point 'a' is the universal set, we need to show that every point belongs to this positive tangent cone.\n2. Consider any point 'b'. We want to show that 'b' belongs to the positive tangent cone of the universal set at 'a'.\n3. Imagine drawing a line segment starting from 'a' and going towards 'b'. \n4. Since the universal set contains all points, this entire line segment must lie within the universal set.\n5. Therefore, by the lemma `mem_posTangentConeAt_of_segment_subset'`, point 'b' belongs to the positive tangent cone of the universal set at 'a'.\n6. Since 'b' was an arbitrary point, this argument holds for any point.\n7. Thus, every point belongs to the positive tangent cone of the universal set at 'a', making it equal to the universal set itself.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem posTangentConeAt_univ : posTangentConeAt univ a = univ :=\n   eq_univ_of_forall fun _ => mem_posTangentConeAt_of_segment_subset' univ\n ",
+        "source": "lean_basic",
+        "uuid": "bd9c66b3-ad3c-2d6d-1a3d-1fa7bc8960a9",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem mem_def {a : α} {s : Finset α} : a ∈ s ↔ a ∈ s.1 :=\n   Iff.rfl\n ",
+        "nl_statement": "Prove that for any element \\( a \\) and finite set \\( s \\), checking if \\( a \\) belongs to \\( s \\) is the same as checking if \\( a \\) belongs to the underlying implementation of \\( s \\).",
+        "nl_proof": "The statement holds trivially because the membership check for a finite set (`a ∈ s`) is directly defined in terms of checking membership within its underlying implementation (`a ∈ s.1`). Therefore, both expressions represent the same operation and are inherently equivalent.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem mem_val {a : α} {s : Finset α} : a ∈ s ↔ a ∈ s.1 :=\n   Iff.rfl\n ",
+        "source": "lean_random",
+        "uuid": "a28defe3-9bf0-0273-1247-6f57a5e5a5ab",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem diag_zero [Zero α] : diag (0 : Matrix n n α) = 0 :=\n   rfl\n ",
+        "nl_statement": "Prove that the diagonal of a zero matrix of size n x n is a zero vector.",
+        "nl_proof": "Consider a zero matrix of size n x n. Its diagonal consists of elements at the same row and column index. Since every element of a zero matrix is zero, all elements on the diagonal are also zero. Therefore, the diagonal of a zero matrix is a zero vector. This is true by the definition of a zero matrix and a zero vector, hence the proof is self-evident.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem diag_zero [Zero α] : diag (0 : Matrix n n α) = 0 :=\n   rfl\n ",
+        "source": "lean_random",
+        "uuid": "451b4cf3-6123-fdf7-7656-af7229d4beef",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem toFun_eq_coe : Q.toFun = ⇑Q :=\n  rfl\n",
+        "nl_statement": "Prove that the function `Q.toFun` is equal to the coercion function `⇑Q`.",
+        "nl_proof": "The proof follows directly from the definition of `Q.toFun`. By definition, `Q.toFun` is equivalent to the coercion function `⇑Q`. Therefore, the statement holds true.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem toFun_eq_coe : Q.toFun = ⇑Q :=\n   rfl\n ",
+        "source": "lean_basic",
+        "uuid": "24933b83-7577-50a9-a491-f0b2ea1fca65",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": null,
+        "nl_statement": "Compute $(-64)\\div (-32)$.",
+        "nl_proof": "When $y$ is nonzero, we have $(-x)\\div (-y) = x\\div y$, so \\[(-64)\\div (-32) = 64\\div 32= \\boxed{2}.\\]\nThe answer is 2\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem neg_div_neg : (-64) / (-32) = 2 := by simp\n ",
+        "source": "math",
+        "uuid": "4b0dbb41-8d52-88f1-142c-3fe860e7a113",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem charmatrix_apply_eq : charmatrix M i i = (X : R[X]) - C (M i i) := by\n  simp only [charmatrix, RingHom.mapMatrix_apply, sub_apply, scalar_apply, map_apply,\n    diagonal_apply_eq]",
+        "nl_statement": "Prove that the element at the \\(i\\)-th row and \\(i\\)-th column of the characteristic matrix of a matrix \\(M\\) is equal to \\(X\\) minus the image of the element at the \\(i\\)-th row and \\(i\\)-th column of \\(M\\) under the canonical ring homomorphism \\(C\\) from a ring \\(R\\) to the polynomial ring \\(R[X]\\).",
+        "nl_proof": "1. We start by considering the element at the \\(i\\)-th row and \\(i\\)-th column of the characteristic matrix of \\(M\\), denoted as `charmatrix M i i`.\n2. By definition, the characteristic matrix is constructed by subtracting the image of each element of \\(M\\) under \\(C\\) from \\(X\\) along the diagonal and keeping other elements as they are.\n3. Therefore, the element at the \\(i\\)-th row and \\(i\\)-th column of the characteristic matrix is obtained by subtracting the image of the element at the \\(i\\)-th row and \\(i\\)-th column of \\(M\\) under \\(C\\) from \\(X\\).\n4. This can be formally written as \\(X\\) minus \\(C (M i i)\\), where \\(C (M i i)\\) represents the image of the \\(i\\)-th row and \\(i\\)-th column element of \\(M\\) under \\(C\\).\n5. Hence, we have shown that `charmatrix M i i = (X : R[X]) - C (M i i)`.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem charmatrix_self (i : n) : charmatrix M i i = (X : R[X]) - C (M i i) := by\n   rw [charmatrix, sub_self]\n ",
+        "source": "lean_basic",
+        "uuid": "23b8c1e9-3924-56de-3eb1-3b9046685257",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": null,
+        "nl_statement": "Bonnie makes the frame of a cube out of 12 pieces of wire that are each six inches long. Meanwhile Roark uses 1-inch-long pieces of wire to make a collection of unit cube frames that are not connected to each other. The total volume of Roark's cubes is the same as the volume of Bonnie's cube. What is the ratio of the total length of Bonnie's wire to the total length of Roark's wire? Express your answer as a common fraction. [asy]\nsize(50);\ndraw((0,0)--(4,0)--(4,4)--(0,4)--cycle);\ndraw((3,1)--(7,1)--(7,5)--(3,5)--cycle);\ndraw((0,0)--(3,1));\ndraw((4,0)--(7,1));\ndraw((4,4)--(7,5));\ndraw((0,4)--(3,5));\n[/asy]",
+        "nl_proof": "The total length of Bonnie's wire is $12\\cdot6=72$ inches, while her total volume is $6^3=216$ cubic inches. Each of Roark's unit cubes has volume $1$ cubic inch, so he needs $216$ cubes.\n\nSince each cube has $12$ edges, each of Roark's cubes has $12\\cdot1=12$ inches of wire. So his $216$ cubes have a total of $216\\cdot12$ inches of wire.\n\nSo the desired fraction is $\\dfrac{72}{216\\cdot12}=\\dfrac{6}{216}=\\boxed{\\dfrac{1}{36}}$.\nThe answer is \\dfrac{1}{36}\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem roark_cube : (12 * 6 : ℚ) / (216 : ℚ) = 1 / 36 := by simp\n ",
+        "source": "math",
+        "uuid": "43b7a3a6-9a8d-ca03-580d-7b71d8f56413",
+        "human_eval_inform": null,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": "theorem map_top : (⊤ : MeasurableSpace α).map f = ⊤ :=\n  (gc_comap_map f).u_top\n",
+        "nl_statement": "Prove that for any function `f`, the pushforward of the largest sigma-algebra on a set `α` through `f` is equal to the largest sigma-algebra on the codomain of `f`.",
+        "nl_proof": "1. We start with the largest sigma-algebra on the set `α`. This sigma-algebra contains all possible subsets of `α`.\n2. When we take the pushforward of this sigma-algebra through the function `f`, we are essentially mapping each subset of `α` to its image under `f`.\n3. Since the original sigma-algebra contained all possible subsets, the resulting collection of sets after applying `f` must also contain all possible subsets of the codomain of `f`.\n4. This resulting collection of sets, being the image of a sigma-algebra under `f`, will also satisfy the properties of a sigma-algebra.\n5. Now, we have a sigma-algebra on the codomain of `f` that contains all possible subsets of the codomain. This means it must be the largest sigma-algebra on the codomain.\n6. Therefore, the pushforward of the largest sigma-algebra on `α` through `f` is equal to the largest sigma-algebra on the codomain of `f`.\n\nThe proof leverages the properties of the largest sigma-algebra, the definition of the pushforward operation, and likely utilizes a theorem connecting `gc`, `comap`, and `map` to establish the desired equality. The `.u_top` part suggests a uniqueness argument based on the lattice structure of sigma-algebras.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem top_comap : comap f ⊤ = ⊤ := by\n   rw [top_comap_gc, ← comap_bot, ← map_bot, ⊤.gc, bot_comap, ⊤.gc,\n     (gc.u_top : (gc.comap f).map f = gc.map f).symm]\n ",
+        "source": "lean_basic",
+        "uuid": "10f1bc81-448a-aa9e-66b2-bc5b50c187fc",
+        "human_eval_inform": true,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": "theorem lt_sqrt_of_sq_lt (h : x ^ 2 < y) : x < sqrt y :=\n   (sq_lt.mp h).2\n ",
+        "nl_statement": "Prove that for any non-negative numbers x and y, if the square of x is less than y, then x is less than the square root of y.",
+        "nl_proof": "1. We are given that the square of x is less than y (x^2 < y).\n2. We can use a property about squares and square roots: if the square of one non-negative number is less than the square of another non-negative number, then the first number is also less than the second number.\n3. Applying this property to our case, since x^2 < y, we can conclude that x is less than the square root of y (x < sqrt(y)).\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem lt_sqrt_of_sq_lt {x y : ℝ} (h : x ^ 2 < y) : x < sqrt y :=\n   NNReal.coe_lt_coe.mp (sq_lt_sq_iff.1 h)\n ",
+        "source": "lean_random",
+        "uuid": "5715bd6f-a416-1293-c4c2-e2e3444ea7c8",
+        "human_eval_inform": false,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": "theorem zero [Nontrivial M₀] : IsPrimitiveRoot (0 : M₀) 0 :=\n   ⟨pow_zero 0, fun l hl => by\n     simpa [zero_pow_eq, show ∀ p, ¬p → False ↔ p from @Classical.not_not] using hl⟩\n ",
+        "nl_statement": "Prove that in any nontrivial multiplicative group `M₀`, the element `0` is a primitive root of unity of order `0`.",
+        "nl_proof": "We need to demonstrate two things for `0` to be a primitive `0`th root of unity in `M₀`:\n\n1. **`0^0 = 1`**: This is generally true for elements in a group (any element raised to the power `0` equals the identity element).\n2. **No smaller `k` exists**: We need to show there is no positive integer `k < 0` such that `0^k = 1`. Since there are no positive integers smaller than `0`, this condition is automatically satisfied.\n\nTherefore, in a nontrivial multiplicative group `M₀`, the element `0` is a primitive root of unity of order `0`.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem isPrimitiveRoot_zero [Nontrivial M₀] : IsPrimitiveRoot (0 : M₀) 0 :=\n   ⟨pow_zero (0 : M₀), fun k hk =>\n     not_lt_of_ge (Nat.cast_nonneg _) (Nat.cast_lt.not.1 <| hk.trans_le <| Nat.zero_le _)⟩\n ",
+        "source": "lean_random",
+        "uuid": "ddd1dfb2-3b98-2ef8-daf6-1a26146d3f31",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem preimage_add_const_Ioc : (fun x => x + a) ⁻¹' Ioc b c = Ioc (b - a) (c - a) := by\n   simp [← Ioi_inter_Iic]\n ",
+        "nl_statement": "Prove that the preimage of the open interval (b, c) under the function that adds a constant 'a' to a number is equal to the open interval (b - a, c - a).",
+        "nl_proof": "1. We need to prove that a number 'x' lies in the preimage of the interval (b, c) under the function 'x + a' if and only if it lies in the interval (b - a, c - a).\n2. A number 'x' belongs to the preimage of (b, c) under the function 'x + a' if and only if 'x + a' belongs to the interval (b, c).\n3. This means 'b < x + a < c'.\n4. Subtracting 'a' from all parts of the inequality, we get 'b - a < x < c - a'.\n5. This implies that 'x' belongs to the open interval (b - a, c - a).\n6. Conversely, if 'x' belongs to the interval (b - a, c - a), then 'b - a < x < c - a'.\n7. Adding 'a' to all parts of the inequality, we get 'b < x + a < c', which means 'x + a' belongs to the interval (b, c).\n8. Therefore, the preimage of the open interval (b, c) under the function 'x + a' is equal to the open interval (b - a, c - a).\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem preimage_add_const_Ioo : (fun x => x + a) ⁻¹' Ioo b c = Ioo (b - a) (c - a) := by\n   simp [← Ici_inter_Iio, inter_comm, add_comm]\n ",
+        "source": "lean_random",
+        "uuid": "3eabedcb-baa8-0dd4-88bd-64072bcfbe01",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem comap_map_le : (m.map f).comap f ≤ m :=\n  (gc_comap_map f).l_u_le _\n",
+        "nl_statement": "Suppose we have a function 'f' and a mapping 'm' (you can imagine a mapping as a way to associate elements from one set to another).  If we first apply 'f' to the input of 'm', then use 'm', and finally consider all possible inputs to 'f' that lead to the same output, this resulting mapping will be \"smaller\" than or equal to our original mapping 'm'.",
+        "nl_proof": "1. Start with our mapping 'm'.\n2. We first apply 'f' to the outputs of 'm', resulting in a new mapping (let's call it 'm_f').\n3. Now, consider all possible inputs to 'f' that, when used in 'm_f', produce the same output. This gives us another mapping, which is `(m.map f).comap f`.\n4. The core idea is that by considering all such inputs to 'f', we are essentially \"undoing\" the effect of 'f' to some extent.  \n5. The lemma `gc_comap_map f` likely formalizes this \"undoing\" and provides a general relationship between `comap` and `map` with 'f'.\n6. Using a specific part of this lemma (`l_u_le _`), we can conclude that our final mapping `(m.map f).comap f` is \"smaller\" than or equal to our original mapping 'm'. This means that any input-output pair in `(m.map f).comap f` must also be present in 'm'.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem comap_map_le : (m.map f).comap f ≤ m :=\n   (gc_comap_map f).l_u_le _\n ",
+        "source": "lean_basic",
+        "uuid": "366eb16f-508e-bad7-b7c9-3acfe059a0ee",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem Finset.countable_toSet (s : Finset α) : Set.Countable (↑s : Set α) :=\n   s.finite_toSet.countable\n ",
+        "nl_statement": "Prove that if you convert a finite set into a regular set, the resulting set is countable.",
+        "nl_proof": "1. We start with a finite set `s`. \n2. By definition, a finite set has a limited number of elements.\n3. When we convert this finite set `s` into a regular set, we simply remove the restriction of having a limited number of elements. \n4. However, the resulting set still contains all the elements from the original finite set `s` and no new elements are added.\n5. Since the original set `s` had a finite number of elements, the converted regular set also has at most the same finite number of elements.\n6. Any set with a finite number of elements is considered countable because we can assign a unique natural number to each element.\n7. Therefore, the conversion of a finite set into a regular set results in a countable set.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem countable_toSet (s : Finset α) : Countable s.toSet :=\n   s.finite_toSet.countable\n ",
+        "source": "lean_random",
+        "uuid": "a013ac6e-deda-4e16-1b3d-bd5ce9a1fa6f",
+        "human_eval_inform": false,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": "theorem union_union_distrib_left (s t u : Finset α) : s ∪ (t ∪ u) = s ∪ t ∪ (s ∪ u) :=\n   sup_sup_distrib_left _ _ _\n ",
+        "nl_statement": "Prove that for any three finite sets \\( s₁ \\), \\( s₂ \\), and \\( s₃ \\), if \\( s₁ \\) is a superset of \\( s₂ \\) and \\( s₂ \\) is a superset of \\( s₃ \\), then \\( s₁ \\) is a superset of \\( s₃ \\).",
+        "nl_proof": "1. We are given that \\( s₁ \\) is a superset of \\( s₂ \\). This means that every element in \\( s₂ \\) is also an element of \\( s₁ \\).\n2. We are also given that \\( s₂ \\) is a superset of \\( s₃ \\). This means that every element in \\( s₃ \\) is also an element of \\( s₂ \\).\n3. Now, consider any element in \\( s₃ \\). Since \\( s₂ \\) is a superset of \\( s₃ \\), this element must also be in \\( s₂ \\).\n4. Furthermore, since \\( s₁ \\) is a superset of \\( s₂ \\), and the element is in \\( s₂ \\), it must also be in \\( s₁ \\).\n5. Therefore, any element in \\( s₃ \\) is also in \\( s₁ \\).\n6. This proves that  \\( s₁ \\) is a superset of \\( s₃ \\).\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem Superset.trans {s₁ s₂ s₃ : Finset α} (h₁ : s₁ ⊆ s₂) (h₂ : s₂ ⊆ s₃) : s₁ ⊆ s₃ :=\n   h₁.mono h₂\n ",
+        "source": "lean_random",
+        "uuid": "fc377a4c-4a15-544d-c5e7-ce8a3a578a8e",
+        "human_eval_inform": false,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": null,
+        "nl_statement": "Simplify: $|{-3^2+4}|$",
+        "nl_proof": "We calculate as follows: \\[\n|{-3^2+4}|=|{-9+4}|=|{-5}|=\\boxed{5}.\\] Note that $-3^2=-9$ because our conventions for carrying out operations dictate that exponentiation should be done before negation. Hence $-3^2$ means $-(3^2)$ rather than $(-3)^2$.\nThe answer is 5\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem abs_neg_cubed_add_four : |-3 ^ 2 + 4| = 5 := by simp\n ",
+        "source": "math",
+        "uuid": "ec1b8ca1-f91e-1d4c-1ff4-9b7889463e85",
+        "human_eval_inform": null,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": null,
+        "nl_statement": "Let $a,$ $b,$ $c,$ $d$ be nonzero integers such that\n\\[\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}^2 = \\begin{pmatrix} 7 & 0 \\\\ 0 & 7 \\end{pmatrix}.\\]Find the smallest possible value of $|a| + |b| + |c| + |d|.$",
+        "nl_proof": "We have that\n\\[\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}^2 = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = \\begin{pmatrix} a^2 + bc & ab + bd \\\\ ac + cd & bc + d^2 \\end{pmatrix},\\]so $a^2 + bc = bc + d^2 = 7$ and $ab + bd = ac + cd = 0.$  Then $b(a + d) = c(a + d) = 0.$  Since $b$ and $c$ are nonzero, $a + d = 0.$\n\nIf $|a| = |d| = 1,$ then\n\\[bc = 7 - a^2 = 6.\\]To minimize $|a| + |b| + |c| + |d| = |b| + |c| + 2,$ we take $b = 2$ and $c = 3,$ so $|a| + |b| + |c| + |d| = 7.$\n\nIf $|a| = |d| = 2,$ then\n\\[bc = 7 - a^2 = 3.\\]Then $|b|$ and $|c|$ must be equal to 1 and 3 in some order, so $|a| + |b| + |c| + |d| = 8.$\n\nIf $|a| = |d| \\ge 3,$ then $|a| + |b| + |c| + |d| \\ge 8.$\n\nTherefore, the minimum value of $|a| + |b| + |c| + |d|$ is $\\boxed{7}.$\nThe answer is 7\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem sum_norm_min : (‖(a : ℤ)‖ + ‖(b : ℤ)‖ + ‖(c : ℤ)‖ + ‖(d : ℤ)‖) % 32 = 7 := by\n   have : ‖(c : ℤ)‖ + ‖(d : ℤ)‖ = 2 • ‖(a : ℤ)‖ + ‖(b : ℤ)‖ + 2 := by\n     rw [mul_comm _ _]\n     simp [Zsqrtd.mul_right_inj, norm_mul, norm_mul, norm_mul, norm_mul]\n   refine' (min_mem_range 0 32).2 (by norm_num)\n   rw [← this]\n   refine' mod_cast (min_mem_range 0 32).2 _\n   rw [← Nat.cast_add, ← Nat.cast_add, ← Nat.cast_add, ← Nat.cast_add, ← Nat.cast_add]\n   norm_num\n ",
+        "source": "math",
+        "uuid": "dc713d96-0c0f-d195-c17a-f08a1745d6d8",
+        "human_eval_inform": null,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": "theorem measurable_cosh : Measurable cosh :=\n  continuous_cosh.measurable\n",
+        "nl_statement": "Prove that the hyperbolic cosine function (cosh) is measurable.",
+        "nl_proof": "1. We know that the hyperbolic cosine function (cosh) is continuous.\n2. Since continuous functions are measurable, we can conclude that the hyperbolic cosine function (cosh) is also measurable.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem measurable_cosh : Measurable cosh :=\n   continuous_cosh.measurable\n ",
+        "source": "lean_basic",
+        "uuid": "9a1de644-815e-f6d1-3b8f-aa1837f8a88b",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": null,
+        "nl_statement": "Simplify the fraction $\\dfrac{88}{7744}.$",
+        "nl_proof": "Since $88$ and $7744$ share a common factor of $88$, we can simplify $$\\dfrac{88}{7744}=\\dfrac{1 \\cdot 88}{88 \\cdot 88} = \\dfrac{1 \\cdot \\cancel{88}}{88 \\cdot \\cancel{88}} = \\boxed{\\dfrac{1}{88}}.$$\nThe answer is \\dfrac{1}{88}\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem one_div_eighty_eight : 88 / 7744 = 1 / 88 := by simp\n ",
+        "source": "math",
+        "uuid": "759cde66-bacf-b3d0-0b1f-9163ce9ff57f",
+        "human_eval_inform": null,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": null,
+        "nl_statement": "Find the least positive integer $n$ such that $$\\frac 1{\\sin 45^\\circ\\sin 46^\\circ}+\\frac 1{\\sin 47^\\circ\\sin 48^\\circ}+\\cdots+\\frac 1{\\sin 133^\\circ\\sin 134^\\circ}=\\frac 1{\\sin n^\\circ}.$$",
+        "nl_proof": "Each term is of the form $\\frac{1}{\\sin k^\\circ \\sin (k + 1)^\\circ}.$  To deal with this term, we look at $\\sin ((k + 1)^\\circ - k^\\circ).$  From the angle subtraction formula,\n\\[\\sin ((k + 1)^\\circ - k^\\circ) = \\sin (k + 1)^\\circ \\cos k^\\circ - \\cos (k + 1)^\\circ \\sin k^\\circ.\\]Then\n\\begin{align*}\n\\frac{\\sin 1^\\circ}{\\sin k^\\circ \\sin (k + 1)^\\circ} &= \\frac{\\sin ((k + 1)^\\circ - k^\\circ)}{\\sin k^\\circ \\sin (k + 1)^\\circ} \\\\\n&= \\frac{\\sin (k + 1)^\\circ \\cos k^\\circ - \\cos (k + 1)^\\circ \\sin k^\\circ}{\\sin k^\\circ \\sin (k + 1)^\\circ} \\\\\n&= \\frac{\\cos k^\\circ}{\\sin k^\\circ} - \\frac{\\cos (k + 1)^\\circ}{\\sin (k + 1)^\\circ} \\\\\n&= \\cot k^\\circ - \\cot (k + 1)^\\circ.\n\\end{align*}Hence,\n\\[\\frac{1}{\\sin k^\\circ \\sin (k + 1)^\\circ} = \\frac{1}{\\sin 1^\\circ} (\\cot k^\\circ - \\cot (k + 1)^\\circ).\\]Then\n\\begin{align*}\n&\\frac{1}{\\sin 45^\\circ \\sin 46^\\circ} + \\frac{1}{\\sin 47^\\circ \\sin 48^\\circ} + \\dots + \\frac{1}{\\sin 133^\\circ \\sin 134^\\circ} \\\\\n&= \\frac{1}{\\sin 1^\\circ} (\\cot 45^\\circ - \\cot 46^\\circ + \\cot 47^\\circ - \\cot 48^\\circ + \\dots + \\cot 133^\\circ - \\cot 134^\\circ).\n\\end{align*}Since $\\cot (180^\\circ - x) = -\\cot x,$ the sum reduces to\n\\[\\frac{\\cot 45^\\circ - \\cot 90^\\circ}{\\sin 1^\\circ} = \\frac{1}{\\sin 1^\\circ}.\\]Thus, the smallest such positive integer $n$ is $\\boxed{1}.$\nThe answer is 1\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem find_n_sin_add_sin : ∃ n : ℕ, (n : ℝ) = 1 ∧ ↑n = 1 :=\n   ⟨1, by simp⟩\n ",
+        "source": "math",
+        "uuid": "f143262f-dc5c-0eed-8da0-365bf89897b9",
+        "human_eval_inform": null,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": null,
+        "nl_statement": "Completely factor the following expression: \\[(6a^3+92a^2-7)-(-7a^3+a^2-7)\\]",
+        "nl_proof": "First, we combine like terms in the expression: \\begin{align*}\n&(6a^3+92a^2-7)-(-7a^3+a^2-7)\\\\\n& \\qquad=6a^3+92a^2-7+7a^3-a^2+7\\\\\n&\\qquad=13a^3+91a^2.\n\\end{align*}We can factor out a $13a^2$ from the expression, to get \\[13a^3+91a^2=\\boxed{13a^2(a+7)}.\\]\nThe answer is 13a^2(a+7)\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem factor_quadratic_add_cubic : (6 * a ^ 3 + 92 * a ^ 2 - 7) - (-7 * a ^ 3 + a ^ 2 - 7) = 13 * a ^ 2 * (a + 7) := by\n   ring\n ",
+        "source": "math",
+        "uuid": "3139d32c-93cd-59bf-5c94-1cf0dc98d2c1",
+        "human_eval_inform": null,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem unbot'_coe {α} (d x : α) : unbot' d x = x :=\n   rfl\n ",
+        "nl_statement": "For any type of objects α, if we have a specific object 'd' of type α and another object 'x' of the same type, then applying a function called \"unbot'\" with 'd' and 'x' as inputs will always result in 'x'.",
+        "nl_proof": "The theorem states that applying the function \"unbot'\" to any objects 'd' and 'x' of the same type will always return 'x'. The proof directly follows from the definition of the \"unbot'\" function, which implies that \"unbot' d x\" is simply another way of expressing 'x'. Therefore, the result of the function is 'x' itself.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem unbot'_apply (d x : α) : unbot' d x = x :=\n   rfl\n ",
+        "source": "lean_random",
+        "uuid": "81f76d1c-2dbc-2134-c30f-f46e8026695f",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": "theorem toOuterMeasure_apply_eq_zero_iff : p.toOuterMeasure s = 0 ↔ Disjoint p.support s := by\n  rw [toOuterMeasure_apply, ENNReal.tsum_eq_zero]\n  exact Function.funext_iff.symm.trans Set.indicator_eq_zero'\n",
+        "nl_statement": "Given a premeasure `p` and a set `s`, prove that the outer measure of `s` with respect to `p` is zero if and only if the support of `p` is disjoint from `s`.",
+        "nl_proof": "We need to prove both directions of the \"if and only if\" statement.\n\n**Direction 1: If the outer measure of `s` is 0, then the support of `p` is disjoint from `s`.**\n\n1. Assume that the outer measure of `s` with respect to `p` is 0. \n2. This means that we can cover `s` with a countable collection of sets from the premeasure `p`, such that the sum of their premeasures is 0.\n3. Since premeasures are non-negative, the only way the sum can be 0 is if each individual premeasure is 0.\n4. If a set has a premeasure of 0, it means that it doesn't intersect with the support of `p` (because the support only includes sets with non-zero premeasure).\n5. Therefore, `s` cannot intersect with the support of `p`, meaning they are disjoint.\n\n**Direction 2: If the support of `p` is disjoint from `s`, then the outer measure of `s` is 0.**\n\n1. Assume that the support of `p` is disjoint from `s`.\n2. We can cover `s` with a single set: `s` itself.\n3. Since `s` is disjoint from the support of `p`, its premeasure is 0.\n4. Therefore, we have covered `s` with a collection of sets (just one set in this case) whose premeasures sum to 0.\n5. This means that the outer measure of `s` is 0.\n\nSince we have proven both directions, we have shown that the outer measure of `s` with respect to `p` is zero if and only if the support of `p` is disjoint from `s`.\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem toOuterMeasure_apply_eq_zero_iff_disjoint : p.toOuterMeasure s = 0 ↔ Disjoint p.support s := by\n   rw [← toOuterMeasure_apply_eq_sum_restrict, toOuterMeasure_apply_eq_sum_iff]\n   exact premeasure_restrict_eq_zero_iff.trans disjoint_singleton_right\n ",
+        "source": "lean_basic",
+        "uuid": "bdd640fb-0667-1ad1-1c80-317fa3b1799d",
+        "human_eval_inform": true,
+        "human_eval_autoform": true
+    },
+    {
+        "formal": null,
+        "nl_statement": "Compute $\\begin{pmatrix} 2 & - 1 \\\\ - 3 & 4 \\end{pmatrix} \\begin{pmatrix} 3 \\\\ - 1 \\end{pmatrix}.$",
+        "nl_proof": "We have that\n\\[\\begin{pmatrix} 2 & - 1 \\\\ - 3 & 4 \\end{pmatrix} \\begin{pmatrix} 3 \\\\ - 1 \\end{pmatrix} = \\begin{pmatrix} (2)(3) + (-1)(-1) \\\\ (-3)(3) + (4)(-1) \\end{pmatrix} = \\boxed{\\begin{pmatrix} 7 \\\\ -13 \\end{pmatrix}}.\\]\nThe answer is \\begin{pmatrix} 7 \\\\ -13 \\end{pmatrix}\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem two_neg_one_neg_three_four_three_neg_one : (2 : ℤ) * 3 + (-1 : ℤ) * (-1) = 7 := by\n   simp\n ",
+        "source": "math",
+        "uuid": "28f49481-a0a0-4dc4-2720-9bdf1c11f735",
+        "human_eval_inform": null,
+        "human_eval_autoform": false
+    },
+    {
+        "formal": null,
+        "nl_statement": "A square with side length 1 is rotated about one vertex by an angle of $\\alpha,$ where $0^\\circ < \\alpha < 90^\\circ$ and $\\cos \\alpha = \\frac{4}{5}.$  Find the area of the shaded region that is common to both squares.\n\n[asy]\nunitsize(3 cm);\n\npair A, B, C, D, Bp, Cp, Dp, P;\n\nA = (0,0);\nB = (-1,0);\nC = (-1,-1);\nD = (0,-1);\nBp = rotate(aCos(4/5))*(B);\nCp = rotate(aCos(4/5))*(C);\nDp = rotate(aCos(4/5))*(D);\nP = extension(C,D,Bp,Cp);\n\nfill(A--Bp--P--D--cycle,gray(0.7));\ndraw(A--B---C--D--cycle);\ndraw(A--Bp--Cp--Dp--cycle);\n\nlabel(\"$\\alpha$\", A + (-0.25,-0.1));\n[/asy]",
+        "nl_proof": "Let the squares be $ABCD$ and $AB'C'D',$ as shown.  Let $P$ be the intersection of $\\overline{CD}$ and $\\overline{B'C'}.$\n\n[asy]\nunitsize(3 cm);\n\npair A, B, C, D, Bp, Cp, Dp, P;\n\nA = (0,0);\nB = (-1,0);\nC = (-1,-1);\nD = (0,-1);\nBp = rotate(aCos(4/5))*(B);\nCp = rotate(aCos(4/5))*(C);\nDp = rotate(aCos(4/5))*(D);\nP = extension(C,D,Bp,Cp);\n\nfill(A--Bp--P--D--cycle,gray(0.7));\ndraw(A--B---C--D--cycle);\ndraw(A--Bp--Cp--Dp--cycle);\ndraw(A--P);\n\nlabel(\"$\\alpha$\", A + (-0.25,-0.1));\nlabel(\"$A$\", A, NE);\nlabel(\"$B$\", B, NW);\nlabel(\"$C$\", C, SW);\nlabel(\"$D$\", D, SE);\nlabel(\"$B'$\", Bp, W);\nlabel(\"$C'$\", Cp, S);\nlabel(\"$D'$\", Dp, E);\nlabel(\"$P$\", P, SW);\n[/asy]\n\nThen $\\angle B'AD = 90^\\circ - \\alpha,$ and by symmetry, $\\angle B'AP = \\angle DAP = \\frac{90^\\circ - \\alpha}{2} = 45^\\circ - \\frac{\\alpha}{2}.$  Then\n\\[B'P = \\tan \\left( 45^\\circ - \\frac{\\alpha}{2} \\right) = \\frac{\\tan 45^\\circ - \\tan \\frac{\\alpha}{2}}{1 + \\tan 45^\\circ \\tan \\frac{\\alpha}{2}} = \\frac{1 - \\tan \\frac{\\alpha}{2}}{1 + \\tan \\frac{\\alpha}{2}}.\\]Since $\\alpha$ is acute,\n\\[\\sin \\alpha = \\sqrt{1 - \\cos^2 \\alpha} = \\sqrt{1 - \\left( \\frac{4}{5} \\right)^2} = \\frac{3}{5},\\]so\n\\[\\tan \\frac{\\alpha}{2} = \\frac{\\sin \\alpha}{1 + \\cos \\alpha} = \\frac{3/5}{1 + 4/5} = \\frac{1}{3}.\\]Then\n\\[BP = \\frac{1 - 1/3}{1 + 1/3} = \\frac{1}{2},\\]so $[AB'P] = \\frac{1}{2} \\cdot \\frac{1}{2} \\cdot 1 = \\frac{1}{4}.$  Also, $[ADP] = \\frac{1}{4},$ so the area of the shaded region is $\\boxed{\\frac{1}{2}}.$\nThe answer is \\frac{1}{2}\n\nTranslate the statement and proof in natural language to lean4:",
+        "fl_statementproof": "theorem area_of_half_square_rotated : (1 / 2 : ℝ) = (2 : ℝ) / 4 := by\n   norm_num\n ",
+        "source": "math",
+        "uuid": "988c24c9-61b1-cd22-6280-1c4510435a10",
+        "human_eval_inform": null,
+        "human_eval_autoform": false
+    }
+]

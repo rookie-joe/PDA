@@ -12,14 +12,15 @@ def add_items_to_samples(json_data):
 # List of input and output file pairs
 file_pairs = [
     ('gemini_sample10.json', 'gemini_sample10_annotation.json'),
-    ('gpt4o_sample10.json', 'gpt4o_sample10_annotation.json')
+    ('gpt4o_sample10.json', 'gpt4o_sample10_annotation.json'),
+    ('train_gemini_sample10.json', 'train_gemini_sample10_annotate.json'),
 ]
 
 # Directory where the input files are located
-input_dir = '../output'
+input_dir = './output_to_be_annotated'
 
 # Directory where the output files will be saved
-output_dir = '../output'
+output_dir = './output_to_be_annotated'
 
 # Ensure the output directory exists
 os.makedirs(output_dir, exist_ok=True)
