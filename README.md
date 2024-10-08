@@ -1,17 +1,17 @@
 # Process-Driven Autoformalization in Lean 4
+This is the official repository for implementing the paper [Process-Driven Autoformalization in Lean 4](https://arxiv.org/abs/2406.01940).
 
-We note that we have already released our novel proposed benchmark, **Form**alization for **L**ean **4** (**<span style="font-variant: small-caps;">forml4</span>**), and **We will release the code and corresponding finetuned autoformalizer and process-enhanced verifier soon**. This is the official repository for implementing our paper [Process-Driven Autoformalization in Lean 4](https://arxiv.org/abs/2406.01940).
+The autoformalization dataset **Form**alization for **L**ean **4** (**<span style="font-variant: small-caps;">forml4</span>**) is released and located in `data/FormL4`. **We will release the code and corresponding finetuned autoformalizer and process-enhanced verifier soon**.
 
 ## Overview
 An overview of process-driven autoformalization (PDA):
 
 ![PDA overview](./PDA_main.png)
 
-1. **FORML4** benchmark is constructed by prompting GPT-4 to informalize theorems extracted from Mathlib 4; 
+1. **FORML4** dataset is constructed by prompting Gemini-1.5-Pro to informalize theorems extracted from Mathlib 4; 
 2. An **autoformalizer** model is trained on FORML4, with output sent to the Lean 4 Compiler for automated feedback; 
-3. The compiled feedback can provide **process-level annotations** for the autoformalizer's output which are used to train an effective **PSV model**; 
-4. For further enhancement, the autoformalizer is subsequently fine-tuned by the verifier’s feedback, while the
-verifier can again benefit from the improved autoformalizer’s higher-quality output data.
+3. The feedback can provide **process-level annotations** for the autoformalizer's output which are used to train an effective **process-supervised verifier (PSV)**; 
+4. For further enhancement, the autoformalizer is subsequently fine-tuned by the verifier’s feedback, while the verifier can again benefit from the improved autoformalizer’s higher-quality output data.
 
 ## Repository Structure
 
@@ -30,29 +30,27 @@ PDA
 
 ## Dataset 
 
-The `data` directory includes both training  and testing data (**<span style="font-variant: small-caps;">forml4</span>**) for benchmarking the autoformalization task in Lean 4. This dataset is a key resource for developing and evaluating models that can automate the process of formalizing mathematical statements and proofs.
+The `data` directory includes both training and testing data (**<span style="font-variant: small-caps;">forml4</span>**) for training and testing the autoformalization task in Lean 4. It contains:
+  - The `raw.zip` contains raw theorems extracted from mathlib4;
+  - The `FormL4` folder contains the final FormL4 dataset, constructed from LLM informalization and manual processing. See the paper for details about data filtering, construction, etc.
 
-### Contents of the Dataset
+### Breakdown of FormL4
 
-The dataset is organized into the following files, ensuring a comprehensive approach to both training and testing your models:
+The **<span style="font-variant: small-caps;">forml4</span>** dataset is organized into the following files, ensuring a comprehensive approach to both training and testing your models:
 
-- `train.json`: The training data file containing 14509 examples to train models. It includes both the formal and informal statements necessary for learning the autoformalization.
+- `train.json`: The training data file containing 14,250 examples to train models. It includes both the formal and informal statements necessary for learning the autoformalization.
 - `basic_test.json`: The basic test set (970) is specifically designed to evaluate a model's capability to formalize fundamental theorems. 
-- `random_test.json`: The random test set (979) contains a diverse and randomly selected set of problems. 
-- `real_test.jsonl`: The real test set represents the out-of-domain test set, featuring 1,000 natural language mathematics questions and answers distilled from the Arithmo test set. 
-
-
+- `random_test.json`: The random test set (950) contains a diverse and randomly selected set of problems. 
+- `real_test.jsonl`: The real test set represents the out-of-domain test set, featuring 967 natural language mathematics questions and answers distilled from the Arithmo test set. 
 
 ## Code 
-
-
 
 - [x] **Applying Lean 4 Compiler**: Please visit our GitHub repository for more details about how to automate your Lean 4 installation and compilation: [**Automatic Lean 4 Compilation Guide**](https://github.com/rookie-joe/automatic-lean4-compilation)
 
 - [ ] Training/Evaluating autoformalizer and verifier based on (**<span style="font-variant: small-caps;">forml4</span>**) 
 
-
-
+## Human Evaluation
+Human annotations are provided in the `annotation` sub-directory. See the `README.md` in the sub-directory for details.
 
 ## Results
 
@@ -99,7 +97,6 @@ Next, we further evaluated an enhanced verifier by applying it to outputs from t
 | Basic   | 40.71        | 81.34         | 80.12            | 45.13           | 84.22           | 83.18               | 41.49          | 84.59          | 82.73            | 47.30            | 89.14          | 94.17              |
 | Random  | 36.14        | 81.16         | 81.07            | 38.21           | 83.13           | 84.45               | 37.52          | 84.68          | 83.47            | 44.32            | 84.20          | 93.70              |
 | Real    | 25.75        | 84.45         | 86.21            | 33.41           | 84.45           | 86.21               | 33.42          | 84.34          | 81.08            | 45.10            | 94.18          | 89.31              |
-
 
 
 ## Contributing
