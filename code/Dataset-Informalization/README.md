@@ -14,7 +14,7 @@ This folder contains codes used to construct the **FormL4** dataset.
     - GEMINI models:
 
     ```
-    python informalization_gemini_location.py \
+    python informalization_gemini.py \
         --project_id [YOUR PROJECT ID] \
         --location [YOUR API location] \
         --model_name gemini-1.5-pro-001\
@@ -26,7 +26,7 @@ This folder contains codes used to construct the **FormL4** dataset.
     - OPENAI models:
 
     ```
-    python informalization_gemini_location.py \
+    python informalization_openai.py \
     --api_key [YOUR OPENAI API KEY] \
     --base_url [YOUR OPENAI BASE URL] \
     --model_name gpt-4o\
